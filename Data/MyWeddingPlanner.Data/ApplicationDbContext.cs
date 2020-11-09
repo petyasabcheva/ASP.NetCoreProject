@@ -26,6 +26,35 @@ namespace MyWeddingPlanner.Data
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<ArticleComment> ArticleComments { get; set; }
+
+        public DbSet<BlogArticle> BlogArticles { get; set; }
+
+        public DbSet<BlogCategory> BlogCategories { get; set; }
+
+        public DbSet<Expenditure> Expenditures { get; set; }
+
+        public DbSet<ForumCategory> ForumCategories { get; set; }
+
+        public DbSet<ForumComment> ForumComments { get; set; }
+
+        public DbSet<ForumCommentReply> ForumCommentReplies { get; set; }
+
+        public DbSet<ForumPost> ForumPosts { get; set; }
+
+        public DbSet<Guest> Guests { get; set; }
+
+        public DbSet<Service> Services { get; set; }
+
+        public DbSet<ToDo> ToDos { get; set; }
+
+        public DbSet<Vendor> Vendors { get; set; }
+
+        public DbSet<VendorReview> VendorReviews { get; set; }
+
+        public DbSet<Wedding> Weddings { get; set; }
+
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
