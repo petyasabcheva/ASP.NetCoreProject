@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
+using MyWeddingPlanner.Data.Common.Models;
 
 namespace MyWeddingPlanner.Data.Models
 {
-    public class ForumCommentReply
+    public class ForumCommentReply : BaseDeletableModel<int>
     {
-        public int Id { get; set; }
-
         public string Content { get; set; }
 
         public string AuthorId { get; set; }

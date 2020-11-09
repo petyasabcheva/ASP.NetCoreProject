@@ -1,10 +1,10 @@
-﻿namespace MyWeddingPlanner.Data.Models
+﻿using MyWeddingPlanner.Data.Common.Models;
+
+namespace MyWeddingPlanner.Data.Models
 {
 
-    public class VendorReview
+    public class VendorReview : BaseDeletableModel<int>
     {
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public int Rating { get; set; }

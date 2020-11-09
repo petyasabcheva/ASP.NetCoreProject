@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
+using MyWeddingPlanner.Data.Common.Models;
 
 namespace MyWeddingPlanner.Data.Models
 {
-    public class ForumComment
+    public class ForumComment : BaseDeletableModel<int>
     {
         public ForumComment()
         {
             this.Replies=new HashSet<ForumCommentReply>();
         }
-
-        public int Id { get; set; }
-
         public string Content { get; set; }
 
         public string AuthorId { get; set; }

@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
+using MyWeddingPlanner.Data.Common.Models;
 
 namespace MyWeddingPlanner.Data.Models
 {
-    public class Vendor
+    public class Vendor : BaseModel<int>
     {
         public Vendor()
         {
             this.Services=new HashSet<Service>();
             this.Reviews=new HashSet<VendorReview>();
-            this.Photos=new List<string>();
+            this.Photos=new HashSet<Photo>();
         }
-
-        public int Id { get; set; }
-
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }
@@ -29,7 +27,7 @@ namespace MyWeddingPlanner.Data.Models
 
         public string WebPage { get; set; }
 
-        public List<string> Photos { get; set; }
+        public ICollection<Photo> Photos { get; set; }
 
         public virtual ICollection<Service> Services { get; set; }
 

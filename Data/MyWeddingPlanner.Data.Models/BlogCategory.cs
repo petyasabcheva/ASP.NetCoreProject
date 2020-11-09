@@ -10,7 +10,6 @@ namespace MyWeddingPlanner.Data.Models
         {
             this.Articles = new HashSet<BlogArticle>();
         }
-
         public int Id { get; set; }
 
         public string Name { get; set; }
