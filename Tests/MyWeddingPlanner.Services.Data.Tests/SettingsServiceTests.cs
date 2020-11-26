@@ -1,20 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models;
-using MyWeddingPlanner.Data.Repositories;
-
-using Microsoft.EntityFrameworkCore;
-
-using Moq;
-
-using Xunit;
-
-namespace MyWeddingPlanner.Services.Data.Tests
+﻿namespace MyWeddingPlanner.Services.Data.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using Moq;
+    using MyWeddingPlanner.Data;
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models;
+    using MyWeddingPlanner.Data.Repositories;
+    using Xunit;
+
     public class SettingsServiceTests
     {
         [Fact]

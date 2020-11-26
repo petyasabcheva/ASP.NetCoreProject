@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyWeddingPlanner.Data.Common.Models
+﻿namespace MyWeddingPlanner.Data.Common.Models
 {
+    using System;
+
     public interface IDeletableEntity
     {
         bool IsDeleted { get; set; }

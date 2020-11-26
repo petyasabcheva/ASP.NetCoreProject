@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data.Common.Models;
-using MyWeddingPlanner.Data.Common.Repositories;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace MyWeddingPlanner.Data.Repositories
+﻿namespace MyWeddingPlanner.Data.Repositories
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using MyWeddingPlanner.Data.Common.Models;
+    using MyWeddingPlanner.Data.Common.Repositories;
+
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

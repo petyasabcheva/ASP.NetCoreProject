@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-
-using MyWeddingPlanner.Web.ViewModels;
-
-using Microsoft.AspNetCore.Mvc;
-
-namespace MyWeddingPlanner.Web.Controllers
+﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System.Diagnostics;
+
+    using Microsoft.AspNetCore.Mvc;
+    using MyWeddingPlanner.Web.ViewModels;
+
     public class HomeController : BaseController
     {
         public IActionResult Index()

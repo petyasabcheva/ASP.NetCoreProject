@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Common.Repositories
+﻿namespace MyWeddingPlanner.Data.Common.Repositories
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

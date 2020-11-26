@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data.Common;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace MyWeddingPlanner.Data
+﻿namespace MyWeddingPlanner.Data
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Microsoft.EntityFrameworkCore;
+    using MyWeddingPlanner.Data.Common;
+
     public class DbQueryRunner : IDbQueryRunner
     {
         public DbQueryRunner(ApplicationDbContext context)

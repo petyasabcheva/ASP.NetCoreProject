@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Common;
-using MyWeddingPlanner.Data.Models;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace MyWeddingPlanner.Data.Seeding
+﻿namespace MyWeddingPlanner.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+    using MyWeddingPlanner.Common;
+    using MyWeddingPlanner.Data.Models;
+
     internal class RolesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)

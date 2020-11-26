@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-
-namespace MyWeddingPlanner.Services.Mapping
+﻿namespace MyWeddingPlanner.Services.Mapping
 {
+    using AutoMapper;
+
     public interface IHaveCustomMappings
     {
         void CreateMappings(IProfileExpression configuration);

@@ -1,17 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data.Common.Models;
-using MyWeddingPlanner.Data.Models;
-
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-namespace MyWeddingPlanner.Data
+﻿namespace MyWeddingPlanner.Data
 {
+    using System;
+    using System.Linq;
+    using System.Reflection;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore;
+    using MyWeddingPlanner.Data.Common.Models;
+    using MyWeddingPlanner.Data.Models;
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         private static readonly MethodInfo SetIsDeletedQueryFilterMethod =
@@ -23,8 +22,6 @@ namespace MyWeddingPlanner.Data
             : base(options)
         {
         }
-
-        public DbSet<Setting> Settings { get; set; }
 
         public DbSet<ArticleComment> ArticleComments { get; set; }
 
@@ -53,6 +50,8 @@ namespace MyWeddingPlanner.Data
         public DbSet<VendorReview> VendorReviews { get; set; }
 
         public DbSet<Wedding> Weddings { get; set; }
+
+        public DbSet<Image> Images { get; set; }
 
 
         public override int SaveChanges() => this.SaveChanges(true);

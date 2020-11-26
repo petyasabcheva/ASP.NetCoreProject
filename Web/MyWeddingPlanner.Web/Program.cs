@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-
-namespace MyWeddingPlanner.Web
+﻿namespace MyWeddingPlanner.Web
 {
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Hosting;
+
     public static class Program
     {
         public static void Main(string[] args)

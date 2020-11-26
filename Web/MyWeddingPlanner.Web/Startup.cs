@@ -1,27 +1,25 @@
-﻿using System.Reflection;
-
-using MyWeddingPlanner.Data;
-using MyWeddingPlanner.Data.Common;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models;
-using MyWeddingPlanner.Data.Repositories;
-using MyWeddingPlanner.Data.Seeding;
-using MyWeddingPlanner.Services.Data;
-using MyWeddingPlanner.Services.Mapping;
-using MyWeddingPlanner.Services.Messaging;
-using MyWeddingPlanner.Web.ViewModels;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-namespace MyWeddingPlanner.Web
+﻿namespace MyWeddingPlanner.Web
 {
+    using System.Reflection;
+
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using MyWeddingPlanner.Data;
+    using MyWeddingPlanner.Data.Common;
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models;
+    using MyWeddingPlanner.Data.Repositories;
+    using MyWeddingPlanner.Data.Seeding;
+    using MyWeddingPlanner.Services.Mapping;
+    using MyWeddingPlanner.Services.Messaging;
+    using MyWeddingPlanner.Web.ViewModels;
+
     public class Startup
     {
         private readonly IConfiguration configuration;
@@ -63,7 +61,6 @@ namespace MyWeddingPlanner.Web
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace MyWeddingPlanner.Services.Messaging
+﻿namespace MyWeddingPlanner.Services.Messaging
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public interface IEmailSender
     {
         Task SendEmailAsync(

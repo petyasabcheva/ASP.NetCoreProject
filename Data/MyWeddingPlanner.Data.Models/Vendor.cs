@@ -9,7 +9,7 @@ namespace MyWeddingPlanner.Data.Models
         {
             this.Services=new HashSet<Service>();
             this.Reviews=new HashSet<VendorReview>();
-            this.Photos=new HashSet<Photo>();
+            this.Images=new HashSet<Image>();
         }
         public string UserId { get; set; }
 
@@ -27,7 +27,7 @@ namespace MyWeddingPlanner.Data.Models
 
         public string WebPage { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<Image> Images { get; set; }
 
         public virtual ICollection<Service> Services { get; set; }
 

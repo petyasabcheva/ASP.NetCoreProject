@@ -1,11 +1,10 @@
-﻿using System.Linq;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-using Microsoft.EntityFrameworkCore;
-
-namespace MyWeddingPlanner.Data
+﻿namespace MyWeddingPlanner.Data
 {
+    using System.Linq;
+
+    using Microsoft.EntityFrameworkCore;
+    using MyWeddingPlanner.Data.Common.Models;
+
     internal static class EntityIndexesConfiguration
     {
         public static void Configure(ModelBuilder modelBuilder)

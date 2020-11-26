@@ -1,26 +1,23 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-
-using MyWeddingPlanner.Data;
-using MyWeddingPlanner.Data.Common;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models;
-using MyWeddingPlanner.Data.Repositories;
-using MyWeddingPlanner.Data.Seeding;
-using MyWeddingPlanner.Services.Data;
-using MyWeddingPlanner.Services.Messaging;
-
-using CommandLine;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-
-namespace Sandbox
+﻿namespace Sandbox
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Threading.Tasks;
+
+    using CommandLine;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using MyWeddingPlanner.Data;
+    using MyWeddingPlanner.Data.Common;
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models;
+    using MyWeddingPlanner.Data.Repositories;
+    using MyWeddingPlanner.Data.Seeding;
+    using MyWeddingPlanner.Services.Messaging;
+
     public static class Program
     {
         public static int Main(string[] args)
@@ -52,9 +49,6 @@ namespace Sandbox
         {
             var sw = Stopwatch.StartNew();
 
-            var settingsService = serviceProvider.GetService<ISettingsService>();
-            Console.WriteLine($"Count of settings: {settingsService.GetCount()}");
-
             Console.WriteLine(sw.Elapsed);
             return await Task.FromResult(0);
         }
@@ -81,7 +75,6 @@ namespace Sandbox
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
-            services.AddTransient<ISettingsService, SettingsService>();
         }
     }
 }

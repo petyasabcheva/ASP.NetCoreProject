@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyWeddingPlanner.Data.Common.Models
+﻿namespace MyWeddingPlanner.Data.Common.Models
 {
+    using System;
+
     public abstract class BaseDeletableModel<TKey> : BaseModel<TKey>, IDeletableEntity
     {
         public bool IsDeleted { get; set; }

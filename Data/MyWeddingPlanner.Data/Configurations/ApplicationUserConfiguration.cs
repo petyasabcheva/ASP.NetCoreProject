@@ -1,9 +1,9 @@
-﻿using MyWeddingPlanner.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace MyWeddingPlanner.Data.Configurations
+﻿namespace MyWeddingPlanner.Data.Configurations
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using MyWeddingPlanner.Data.Models;
+
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure(EntityTypeBuilder<ApplicationUser> appUser)
