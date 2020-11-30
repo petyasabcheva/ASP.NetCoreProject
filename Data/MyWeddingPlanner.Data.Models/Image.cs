@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MyWeddingPlanner.Data.Common.Models;
 
 namespace MyWeddingPlanner.Data.Models

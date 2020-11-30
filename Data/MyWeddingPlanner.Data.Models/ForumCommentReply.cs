@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MyWeddingPlanner.Data.Common.Models;
+﻿using MyWeddingPlanner.Data.Common.Models;
 
 namespace MyWeddingPlanner.Data.Models
 {
