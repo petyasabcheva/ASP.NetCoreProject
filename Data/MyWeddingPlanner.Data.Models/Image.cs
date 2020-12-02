@@ -1,5 +1,7 @@
 ﻿using System;
+
 using MyWeddingPlanner.Data.Common.Models;
+using MyWeddingPlanner.Data.Models.Vendors;
 
 namespace MyWeddingPlanner.Data.Models
 {
@@ -17,6 +19,5 @@ namespace MyWeddingPlanner.Data.Models
         public string Extension { get; set; }
 
         public string RemoteImageUrl { get; set; }
-
     }
 }

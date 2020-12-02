@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MyWeddingPlanner.Data.Common\MyWeddingPlanner.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\MyWeddingPlanner.Data.Models\MyWeddingPlanner.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\MyWeddingPlanner.Web.ViewModels\MyWeddingPlanner.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MyWeddingPlanner.Services.Mapping\MyWeddingPlanner.Services.Mapping.csproj" />
   </ItemGroup>
 

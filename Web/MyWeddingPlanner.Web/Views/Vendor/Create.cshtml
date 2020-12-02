@@ -1,6 +1,7 @@
 ﻿@model MyWeddingPlanner.Web.ViewModels.Vendors.CreateVendorInputModel;
 @{
     this.ViewData["Title"] = "Add new vendor";
+    var categoryItems = this.Model.Services.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <form method="post" class="col-md-6 offset-md-3"
@@ -11,6 +12,16 @@
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProfilePicture"></label>
+        <input asp-for="ProfilePicture" class="form-control" />
+        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReturnedServices"></label>
+        <select multiple asp-for="ReturnedServices" class="form-control" asp-items="categoryItems"></select>
+        <span asp-validation-for="ReturnedServices" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Description"></label>
@@ -32,6 +43,23 @@
         <input asp-for="WebPage" class="form-control" />
         <span asp-validation-for="WebPage" class="text-danger"></span>
     </div>
-    
+    <div class="form-group">
+        <label asp-for="Images"></label>
+        <input asp-for="Images" class="form-control" />
+        <span asp-validation-for="Images" class="text-danger"></span>
+    </div>
+
     <input type="submit" class="btn btn-primary" />
 </form>
+
+@section Scripts {
+    <script>
+        jQuery('option').mousedown(function (e) {
+            e.preventDefault();
+            jQuery(this).toggleClass('selected');
+
+            jQuery(this).prop('selected', !jQuery(this).prop('selected'));
+            return false;
+        });
+    </script>
+}

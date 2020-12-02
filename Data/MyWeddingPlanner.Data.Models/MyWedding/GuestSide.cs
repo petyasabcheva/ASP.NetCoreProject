@@ -1,4 +1,4 @@
-﻿namespace MyWeddingPlanner.Data.Models
+﻿namespace MyWeddingPlanner.Data.Models.MyWedding
 {
     public enum GuestSide
     {

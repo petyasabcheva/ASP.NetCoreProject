@@ -16,6 +16,7 @@
     using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Data.Repositories;
     using MyWeddingPlanner.Data.Seeding;
+    using MyWeddingPlanner.Services.Data;
     using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Services.Messaging;
     using MyWeddingPlanner.Web.ViewModels;
@@ -65,6 +66,9 @@
 
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IVendorsService, VendorsService>();
+            services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<IItemsService, ItemsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

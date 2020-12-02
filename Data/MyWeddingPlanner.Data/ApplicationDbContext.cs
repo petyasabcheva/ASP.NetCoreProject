@@ -1,4 +1,6 @@
-﻿namespace MyWeddingPlanner.Data
+﻿using MyWeddingPlanner.Data.Models.Marketplace;
+
+namespace MyWeddingPlanner.Data
 {
     using System;
     using System.Linq;
@@ -10,6 +12,10 @@
     using Microsoft.EntityFrameworkCore;
     using MyWeddingPlanner.Data.Common.Models;
     using MyWeddingPlanner.Data.Models;
+    using MyWeddingPlanner.Data.Models.Blog;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Data.Models.MyWedding;
+    using MyWeddingPlanner.Data.Models.Vendors;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -35,23 +41,27 @@
 
         public DbSet<ForumComment> ForumComments { get; set; }
 
-        public DbSet<ForumCommentReply> ForumCommentReplies { get; set; }
-
         public DbSet<ForumPost> ForumPosts { get; set; }
 
         public DbSet<Guest> Guests { get; set; }
 
-        public DbSet<Service> Services { get; set; }
-
         public DbSet<ToDo> ToDos { get; set; }
 
         public DbSet<Vendor> Vendors { get; set; }
+
+        public DbSet<Service> Services { get; set; }
+        public DbSet<VendorService> VendorServices { get; set; }
 
         public DbSet<VendorReview> VendorReviews { get; set; }
 
         public DbSet<Wedding> Weddings { get; set; }
 
         public DbSet<Image> Images { get; set; }
+
+        public DbSet<ItemForSale> ItemsForSale { get; set; }
+
+        public DbSet<ItemsCategory> ItemsCategories { get; set; }
+
 
 
         public override int SaveChanges() => this.SaveChanges(true);
@@ -100,6 +110,9 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<VendorService>()
+                .HasKey(c => new { c.ServiceId, c.VendorId });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

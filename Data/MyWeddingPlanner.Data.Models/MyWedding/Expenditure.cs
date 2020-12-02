@@ -1,7 +1,8 @@
 ﻿using System;
+
 using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.MyWedding
 {
     public class Expenditure : BaseDeletableModel<int>
     {
@@ -12,6 +13,5 @@ namespace MyWeddingPlanner.Data.Models
         public decimal PaidAmount { get; set; }
 
         public DateTime DueDate { get; set; }
-
     }
 }

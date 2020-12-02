@@ -1,6 +1,6 @@
 ﻿using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.MyWedding
 {
     public class Guest : BaseModel<int>
     {
@@ -9,7 +9,5 @@ namespace MyWeddingPlanner.Data.Models
         public GuestSide Side { get; set; }
 
         public string Table { get; set; }
-
-
     }
 }

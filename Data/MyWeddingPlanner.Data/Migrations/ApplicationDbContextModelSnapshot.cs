@@ -243,7 +243,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ArticleComment", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.ArticleComment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -282,7 +282,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("ArticleComments");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.BlogArticle", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.BlogArticle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,7 +324,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("BlogArticles");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.BlogCategory", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.BlogCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -334,6 +334,12 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
@@ -342,10 +348,234 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IsDeleted");
+
                     b.ToTable("BlogCategories");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Expenditure", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Forum.ForumCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("ForumCategories");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Forum.ForumComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PostId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PostId1")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("PostId1");
+
+                    b.ToTable("ForumComments");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Forum.ForumPost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("ForumPosts");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Image", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ItemForSaleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RemoteImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemForSaleId");
+
+                    b.HasIndex("VendorId");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ItemsCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Sold")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.HasIndex("ItemsCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ItemsForSale");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemsCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("ItemsCategories");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Expenditure", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -388,154 +618,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("Expenditures");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ForumCategories");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PostId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PostId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("PostId1");
-
-                    b.ToTable("ForumComments");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumCommentReply", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CommentId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CommentId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CommentId1");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("ForumCommentReplies");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumPost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("ForumPosts");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Guest", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Guest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -567,77 +650,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("Guests");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Image", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Extension")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RemoteImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Service", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PriceRangeMax")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PriceRangeMin")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("VendorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("Services");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ToDo", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.ToDo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -674,7 +687,68 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("ToDos");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendor", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Wedding", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Budget")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Weddings");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IsDeleted");
+
+                    b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.Vendor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -715,7 +789,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("Vendors");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.VendorReview", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -765,36 +839,19 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("VendorReviews");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Wedding", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorService", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Budget")
+                    b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.HasKey("ServiceId", "VendorId");
 
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("VendorId");
 
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("OwnerId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Weddings");
+                    b.ToTable("VendorServices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -848,9 +905,9 @@ namespace MyWeddingPlanner.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ArticleComment", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.ArticleComment", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.BlogArticle", "Article")
+                    b.HasOne("MyWeddingPlanner.Data.Models.Blog.BlogArticle", "Article")
                         .WithMany()
                         .HasForeignKey("ArticleId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -861,99 +918,103 @@ namespace MyWeddingPlanner.Data.Migrations
                         .HasForeignKey("AuthorId");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.BlogArticle", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.BlogArticle", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.BlogCategory", "Category")
-                        .WithMany("Articles")
+                    b.HasOne("MyWeddingPlanner.Data.Models.Blog.BlogCategory", "Category")
+                        .WithMany("CategoryContents")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Expenditure", b =>
-                {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Wedding", null)
-                        .WithMany("Expenditures")
-                        .HasForeignKey("WeddingId");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumComment", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Forum.ForumComment", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.ForumPost", "Post")
+                    b.HasOne("MyWeddingPlanner.Data.Models.Forum.ForumPost", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId1");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumCommentReply", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Forum.ForumPost", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.ForumComment", "Comment")
-                        .WithMany("Replies")
-                        .HasForeignKey("CommentId1");
-                });
-
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ForumPost", b =>
-                {
-                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("MyWeddingPlanner.Data.Models.ForumCategory", "Category")
-                        .WithMany("Posts")
+                    b.HasOne("MyWeddingPlanner.Data.Models.Forum.ForumCategory", "Category")
+                        .WithMany("CategoryContents")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Guest", b =>
-                {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Wedding", null)
-                        .WithMany("Guests")
-                        .HasForeignKey("WeddingId");
-                });
-
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.Image", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendor", "Vendor")
+                    b.HasOne("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", null)
+                        .WithMany("Images")
+                        .HasForeignKey("ItemForSaleId");
+
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", "Vendor")
                         .WithMany("Images")
                         .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Service", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendor", null)
-                        .WithMany("Services")
-                        .HasForeignKey("VendorId");
+                    b.HasOne("MyWeddingPlanner.Data.Models.Marketplace.ItemsCategory", null)
+                        .WithMany("CategoryContents")
+                        .HasForeignKey("ItemsCategoryId");
+
+                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.ToDo", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Expenditure", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Wedding", null)
+                    b.HasOne("MyWeddingPlanner.Data.Models.MyWedding.Wedding", null)
+                        .WithMany("Expenditures")
+                        .HasForeignKey("WeddingId");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Guest", b =>
+                {
+                    b.HasOne("MyWeddingPlanner.Data.Models.MyWedding.Wedding", null)
+                        .WithMany("Guests")
+                        .HasForeignKey("WeddingId");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.ToDo", b =>
+                {
+                    b.HasOne("MyWeddingPlanner.Data.Models.MyWedding.Wedding", null)
                         .WithMany("ToDos")
                         .HasForeignKey("WeddingId");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendor", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Wedding", b =>
+                {
+                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.Vendor", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.VendorReview", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorReview", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Author")
                         .WithMany()
@@ -963,16 +1024,24 @@ namespace MyWeddingPlanner.Data.Migrations
                         .WithMany()
                         .HasForeignKey("VendorId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendor", null)
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", null)
                         .WithMany("Reviews")
                         .HasForeignKey("VendorId1");
                 });
 
-            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Wedding", b =>
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorService", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Service", "Service")
+                        .WithMany("VendorServices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", "Vendor")
+                        .WithMany("Services")
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

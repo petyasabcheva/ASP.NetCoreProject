@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+
 using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.Forum
 {
     public class ForumPost : BaseDeletableModel<int>
     {
@@ -9,6 +10,7 @@ namespace MyWeddingPlanner.Data.Models
         {
             this.Comments=new HashSet<ForumComment>();
         }
+
         public int CategoryId { get; set; }
 
         public virtual ForumCategory Category { get; set; }

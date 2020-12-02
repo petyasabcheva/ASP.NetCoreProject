@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.MyWedding
 {
     public class Wedding : BaseModel<int>
     {
         public Wedding()
         {
-            this.Guests=new HashSet<Guest>();
-            this.Expenditures=new HashSet<Expenditure>();
-            this.ToDos=new HashSet<ToDo>();
+            this.Guests = new HashSet<Guest>();
+            this.Expenditures = new HashSet<Expenditure>();
+            this.ToDos = new HashSet<ToDo>();
         }
 
         public ApplicationUser Owner { get; set; }

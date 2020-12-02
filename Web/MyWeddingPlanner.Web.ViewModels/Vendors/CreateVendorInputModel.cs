@@ -1,13 +1,24 @@
-﻿using System.Collections.Generic;
-using MyWeddingPlanner.Data.Models;
+﻿using System.Web.Mvc;
 
 namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Http;
+
     public class CreateVendorInputModel
     {
+        //public CreateVendorInputModel()
+        //{
+        //    this.Services=new HashSet<KeyValuePair<string,string>>();
+        //}
+
+
         public string Name { get; set; }
 
-        public string ProfilePicture { get; set; }
+        public IFormFile ProfilePicture { get; set; }
+
+        public int CategoryId { get; set; }
 
         public string Description { get; set; }
 
@@ -17,6 +28,9 @@ namespace MyWeddingPlanner.Web.ViewModels.Vendors
 
         public string WebPage { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public IEnumerable<IFormFile> Images { get; set; }
+
+        public List<int> ReturnedServices { get; set; }
+        public IEnumerable<KeyValuePair<string,string>> Services { get; set; }
     }
 }

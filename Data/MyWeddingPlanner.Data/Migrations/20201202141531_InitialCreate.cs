@@ -62,6 +62,8 @@ namespace MyWeddingPlanner.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -77,11 +79,47 @@ namespace MyWeddingPlanner.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ForumCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ItemsCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemsCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedOn = table.Column<DateTime>(nullable: false),
+                    ModifiedOn = table.Column<DateTime>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    DeletedOn = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,29 +344,7 @@ namespace MyWeddingPlanner.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    CreatedOn = table.Column<DateTime>(nullable: false),
-                    ModifiedOn = table.Column<DateTime>(nullable: true),
-                    VendorId = table.Column<int>(nullable: false),
-                    Extension = table.Column<string>(nullable: true),
-                    RemoteImageUrl = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Vendors_VendorId",
-                        column: x => x.VendorId,
-                        principalTable: "Vendors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Services",
+                name: "ItemsForSale",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -337,19 +353,26 @@ namespace MyWeddingPlanner.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Category = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    PriceRangeMin = table.Column<string>(nullable: true),
-                    PriceRangeMax = table.Column<string>(nullable: true),
-                    VendorId = table.Column<int>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    Sold = table.Column<bool>(nullable: false),
+                    ItemsCategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.PrimaryKey("PK_ItemsForSale", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Services_Vendors_VendorId",
-                        column: x => x.VendorId,
-                        principalTable: "Vendors",
+                        name: "FK_ItemsForSale_ItemsCategories_ItemsCategoryId",
+                        column: x => x.ItemsCategoryId,
+                        principalTable: "ItemsCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ItemsForSale_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -389,6 +412,30 @@ namespace MyWeddingPlanner.Data.Migrations
                     table.ForeignKey(
                         name: "FK_VendorReviews_Vendors_VendorId1",
                         column: x => x.VendorId1,
+                        principalTable: "Vendors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VendorServices",
+                columns: table => new
+                {
+                    VendorId = table.Column<int>(nullable: false),
+                    ServiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VendorServices", x => new { x.ServiceId, x.VendorId });
+                    table.ForeignKey(
+                        name: "FK_VendorServices_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_VendorServices_Vendors_VendorId",
+                        column: x => x.VendorId,
                         principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -534,33 +581,30 @@ namespace MyWeddingPlanner.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ForumCommentReplies",
+                name: "Images",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(nullable: false),
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true),
-                    Content = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<string>(nullable: true),
-                    CommentId = table.Column<string>(nullable: true),
-                    CommentId1 = table.Column<int>(nullable: true)
+                    VendorId = table.Column<int>(nullable: false),
+                    Extension = table.Column<string>(nullable: true),
+                    RemoteImageUrl = table.Column<string>(nullable: true),
+                    ItemForSaleId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ForumCommentReplies", x => x.Id);
+                    table.PrimaryKey("PK_Images", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ForumCommentReplies_AspNetUsers_AuthorId",
-                        column: x => x.AuthorId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_Images_ItemsForSale_ItemForSaleId",
+                        column: x => x.ItemForSaleId,
+                        principalTable: "ItemsForSale",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ForumCommentReplies_ForumComments_CommentId1",
-                        column: x => x.CommentId1,
-                        principalTable: "ForumComments",
+                        name: "FK_Images_Vendors_VendorId",
+                        column: x => x.VendorId,
+                        principalTable: "Vendors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -645,6 +689,11 @@ namespace MyWeddingPlanner.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
+                name: "IX_BlogCategories_IsDeleted",
+                table: "BlogCategories",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Expenditures_IsDeleted",
                 table: "Expenditures",
                 column: "IsDeleted");
@@ -655,18 +704,8 @@ namespace MyWeddingPlanner.Data.Migrations
                 column: "WeddingId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ForumCommentReplies_AuthorId",
-                table: "ForumCommentReplies",
-                column: "AuthorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ForumCommentReplies_CommentId1",
-                table: "ForumCommentReplies",
-                column: "CommentId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ForumCommentReplies_IsDeleted",
-                table: "ForumCommentReplies",
+                name: "IX_ForumCategories_IsDeleted",
+                table: "ForumCategories",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
@@ -705,19 +744,39 @@ namespace MyWeddingPlanner.Data.Migrations
                 column: "WeddingId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Images_ItemForSaleId",
+                table: "Images",
+                column: "ItemForSaleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Images_VendorId",
                 table: "Images",
                 column: "VendorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_IsDeleted",
-                table: "Services",
+                name: "IX_ItemsCategories_IsDeleted",
+                table: "ItemsCategories",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Services_VendorId",
+                name: "IX_ItemsForSale_IsDeleted",
+                table: "ItemsForSale",
+                column: "IsDeleted");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItemsForSale_ItemsCategoryId",
+                table: "ItemsForSale",
+                column: "ItemsCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItemsForSale_UserId",
+                table: "ItemsForSale",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Services_IsDeleted",
                 table: "Services",
-                column: "VendorId");
+                column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ToDos_IsDeleted",
@@ -755,6 +814,11 @@ namespace MyWeddingPlanner.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_VendorServices_VendorId",
+                table: "VendorServices",
+                column: "VendorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Weddings_OwnerId",
                 table: "Weddings",
                 column: "OwnerId");
@@ -784,7 +848,7 @@ namespace MyWeddingPlanner.Data.Migrations
                 name: "Expenditures");
 
             migrationBuilder.DropTable(
-                name: "ForumCommentReplies");
+                name: "ForumComments");
 
             migrationBuilder.DropTable(
                 name: "Guests");
@@ -793,13 +857,13 @@ namespace MyWeddingPlanner.Data.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
-                name: "Services");
-
-            migrationBuilder.DropTable(
                 name: "ToDos");
 
             migrationBuilder.DropTable(
                 name: "VendorReviews");
+
+            migrationBuilder.DropTable(
+                name: "VendorServices");
 
             migrationBuilder.DropTable(
                 name: "BlogArticles");
@@ -808,10 +872,16 @@ namespace MyWeddingPlanner.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "ForumComments");
+                name: "ForumPosts");
+
+            migrationBuilder.DropTable(
+                name: "ItemsForSale");
 
             migrationBuilder.DropTable(
                 name: "Weddings");
+
+            migrationBuilder.DropTable(
+                name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Vendors");
@@ -820,13 +890,13 @@ namespace MyWeddingPlanner.Data.Migrations
                 name: "BlogCategories");
 
             migrationBuilder.DropTable(
-                name: "ForumPosts");
+                name: "ForumCategories");
+
+            migrationBuilder.DropTable(
+                name: "ItemsCategories");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "ForumCategories");
         }
     }
 }

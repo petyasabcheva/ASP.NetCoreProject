@@ -1,18 +1,17 @@
 ﻿using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.Blog
 {
-    public class ForumCommentReply : BaseDeletableModel<int>
+    public class ArticleComment : BaseDeletableModel<int>
     {
+        public int ArticleId { get; set; }
+
+        public virtual BlogArticle Article { get; set; }
+
         public string Content { get; set; }
 
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
-
-        public string CommentId { get; set; }
-
-        public virtual ForumComment Comment { get; set; }
-
     }
 }

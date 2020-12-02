@@ -1,6 +1,6 @@
 ﻿using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.Blog
 {
     public class BlogArticle : BaseDeletableModel<int>
     {

@@ -1,6 +1,6 @@
 ﻿using MyWeddingPlanner.Data.Common.Models;
 
-namespace MyWeddingPlanner.Data.Models
+namespace MyWeddingPlanner.Data.Models.MyWedding
 {
     public class ToDo : BaseDeletableModel<int>
     {
