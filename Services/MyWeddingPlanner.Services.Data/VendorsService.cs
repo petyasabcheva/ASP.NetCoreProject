@@ -1,31 +1,32 @@
 ﻿namespace MyWeddingPlanner.Services.Data
 {
+    using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
     using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Data.Models.Vendors;
     using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Vendors;
 
     public class VendorsService : IVendorsService
     {
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif", "JPG" };
         private readonly IRepository<Vendor> vendorRepository;
         private readonly IDeletableEntityRepository<Service> serviceRepository;
-        private readonly IRepository<VendorService> vendorServiceRepository;
 
         public VendorsService(
             IRepository<Vendor> vendorRepository,
-            IDeletableEntityRepository<Service> serviceRepository,
-            IRepository<VendorService> vendorServiceRepository)
+            IDeletableEntityRepository<Service> serviceRepository)
         {
             this.vendorRepository = vendorRepository;
             this.serviceRepository = serviceRepository;
-            this.vendorServiceRepository = vendorServiceRepository;
         }
 
-        public async Task CreateAsync(CreateVendorInputModel input, string userId)
+        public async Task CreateAsync(CreateVendorInputModel input, string userId, string imagePath)
         {
             var vendor = new Vendor
             {
@@ -54,6 +55,28 @@
                     Service = service,
                     Vendor = vendor,
                 });
+            }
+
+            Directory.CreateDirectory($"{imagePath}/vendors/");
+            foreach (var image in input.Images)
+            {
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new Image
+                {
+                    Extension = extension,
+                };
+                vendor.Images.Add(dbImage);
+
+                dbImage.RemoteImageUrl = "/images/vendors/" + dbImage.Id + '.' + extension;
+
+                var physicalPath = $"{imagePath}/vendors/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
             }
 
             await this.vendorRepository.AddAsync(vendor);

@@ -1,5 +1,8 @@
 ﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
+    using System.Linq;
+
+    using AutoMapper;
     using MyWeddingPlanner.Data.Models.Vendors;
     using MyWeddingPlanner.Services.Mapping;
 
@@ -14,5 +17,15 @@
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Vendor, VendorInListViewModel>()
+                .ForMember(x => x.ImageUrl, opt =>
+                    opt.MapFrom(x =>
+                        x.Images.FirstOrDefault().RemoteImageUrl != null ?
+                            x.Images.FirstOrDefault().RemoteImageUrl :
+                            "/images/vendors/" + x.Images.FirstOrDefault().Id + "." + x.Images.FirstOrDefault().Extension));
+        }
     }
 }

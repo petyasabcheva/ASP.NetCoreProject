@@ -14,11 +14,6 @@
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="ProfilePicture"></label>
-        <input asp-for="ProfilePicture" class="form-control" />
-        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="ReturnedServices"></label>
         <select multiple asp-for="ReturnedServices" class="form-control" asp-items="categoryItems"></select>
         <span asp-validation-for="ReturnedServices" class="text-danger"></span>

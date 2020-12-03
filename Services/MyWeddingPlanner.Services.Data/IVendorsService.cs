@@ -7,7 +7,7 @@
 
     public interface IVendorsService
     {
-        Task CreateAsync(CreateVendorInputModel input, string userId);
+        Task CreateAsync(CreateVendorInputModel input, string userId,string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 

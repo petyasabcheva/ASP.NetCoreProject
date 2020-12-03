@@ -6,13 +6,7 @@
 
     public class CreateVendorInputModel
     {
-        // public CreateVendorInputModel()
-        // {
-        //    this.Services=new HashSet<KeyValuePair<string,string>>();
-        // }
         public string Name { get; set; }
-
-        public IFormFile ProfilePicture { get; set; }
 
         public int CategoryId { get; set; }
 
