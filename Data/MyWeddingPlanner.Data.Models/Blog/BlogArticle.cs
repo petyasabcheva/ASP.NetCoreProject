@@ -1,7 +1,7 @@
-﻿using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Blog
+﻿namespace MyWeddingPlanner.Data.Models.Blog
 {
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class BlogArticle : BaseDeletableModel<int>
     {
         public int CategoryId { get; set; }

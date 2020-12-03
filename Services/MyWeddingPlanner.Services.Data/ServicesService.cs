@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
     using System.Collections.Generic;
     using System.Linq;

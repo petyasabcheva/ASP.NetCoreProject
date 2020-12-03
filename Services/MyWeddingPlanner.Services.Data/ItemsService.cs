@@ -1,13 +1,10 @@
 ﻿namespace MyWeddingPlanner.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using MyWeddingPlanner.Data.Common.Repositories;
-    using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Data.Models.Marketplace;
     using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Marketplace;
@@ -21,7 +18,7 @@
             this.itemsRepository = itemsRepository;
         }
 
-        public  async Task CreateAsync(CreateItemInputModel input, string userId)
+        public async Task CreateAsync(CreateItemInputModel input, string userId)
         {
             var item = new ItemForSale()
             {

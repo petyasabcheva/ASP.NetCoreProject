@@ -1,7 +1,5 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -46,29 +44,27 @@
 
             await this.vendorService.CreateAsync(input, user.Id);
 
-
-
             // TODO: Redirect to recipe info page
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id=1)
+        public IActionResult All(int id = 1)
         {
             const int itemsPerPage = 12;
-            var viewModel=new VendorsListViewModel
+            var viewModel = new VendorsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Vendors = this.vendorService.GetAll<VendorInListViewModel>(id,12),
+                Vendors = this.vendorService.GetAll<VendorInListViewModel>(id, 12),
                 ItemsCount = this.vendorService.GetCount(),
             };
             return this.View(viewModel);
         }
 
-        //public IActionResult ById(int id)
-        //{
+        // public IActionResult ById(int id)
+        // {
         //    var vendor = this.vendorService.GetById<VendorViewModel>(id);
         //    return this.View(vendor);
-        //}
+        // }
     }
 }

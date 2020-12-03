@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Forum
+﻿namespace MyWeddingPlanner.Data.Models.Forum
 {
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class ForumComment : BaseDeletableModel<int>
     {
         public string Content { get; set; }
@@ -15,6 +13,5 @@ namespace MyWeddingPlanner.Data.Models.Forum
         public string PostId { get; set; }
 
         public virtual ForumPost Post { get; set; }
-
     }
 }

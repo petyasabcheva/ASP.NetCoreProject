@@ -2,7 +2,7 @@
 {
     public enum GuestSide
     {
-        Bride=1,
-        Groom=2
+        Bride = 1,
+        Groom = 2,
     }
 }

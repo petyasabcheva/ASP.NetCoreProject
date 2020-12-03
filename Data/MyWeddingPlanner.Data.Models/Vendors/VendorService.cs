@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyWeddingPlanner.Data.Models.Vendors
+﻿namespace MyWeddingPlanner.Data.Models.Vendors
 {
     public class VendorService
     {

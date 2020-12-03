@@ -1,6 +1,4 @@
-﻿using MyWeddingPlanner.Data.Models.Marketplace;
-
-namespace MyWeddingPlanner.Data
+﻿namespace MyWeddingPlanner.Data
 {
     using System;
     using System.Linq;
@@ -14,6 +12,7 @@ namespace MyWeddingPlanner.Data
     using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Data.Models.Blog;
     using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Data.Models.Marketplace;
     using MyWeddingPlanner.Data.Models.MyWedding;
     using MyWeddingPlanner.Data.Models.Vendors;
 
@@ -50,6 +49,7 @@ namespace MyWeddingPlanner.Data
         public DbSet<Vendor> Vendors { get; set; }
 
         public DbSet<Service> Services { get; set; }
+
         public DbSet<VendorService> VendorServices { get; set; }
 
         public DbSet<VendorReview> VendorReviews { get; set; }
@@ -61,8 +61,6 @@ namespace MyWeddingPlanner.Data
         public DbSet<ItemForSale> ItemsForSale { get; set; }
 
         public DbSet<ItemsCategory> ItemsCategories { get; set; }
-
-
 
         public override int SaveChanges() => this.SaveChanges(true);
 

@@ -1,7 +1,6 @@
-﻿using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Vendors
+﻿namespace MyWeddingPlanner.Data.Models.Vendors
 {
+    using MyWeddingPlanner.Data.Common.Models;
 
     public class VendorReview : BaseDeletableModel<int>
     {

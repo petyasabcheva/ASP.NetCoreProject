@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Vendors
+﻿namespace MyWeddingPlanner.Data.Models.Vendors
 {
+    using System.Collections.Generic;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class Vendor : BaseModel<int>
     {
         public Vendor()
         {
-            this.Reviews=new HashSet<VendorReview>();
-            this.VendorServices=new HashSet<VendorService>();
-            this.Images=new HashSet<Image>();
+            this.Reviews = new HashSet<VendorReview>();
+            this.VendorServices = new HashSet<VendorService>();
+            this.Images = new HashSet<Image>();
         }
 
         public string UserId { get; set; }

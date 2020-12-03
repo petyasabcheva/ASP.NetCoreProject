@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models
+﻿namespace MyWeddingPlanner.Data.Models
 {
+    using System.Collections.Generic;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public abstract class Category<T> : BaseDeletableModel<int>
     {
         protected Category()

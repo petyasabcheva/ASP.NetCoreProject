@@ -1,9 +1,7 @@
-﻿using MyWeddingPlanner.Data.Models.Vendors;
-using MyWeddingPlanner.Services.Mapping;
-
-namespace MyWeddingPlanner.Web.ViewModels.Vendors
+﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
-    using System.Collections.Generic;
+    using MyWeddingPlanner.Data.Models.Vendors;
+    using MyWeddingPlanner.Services.Mapping;
 
     public class VendorInListViewModel : IMapFrom<Vendor>
     {
@@ -16,7 +14,5 @@ namespace MyWeddingPlanner.Web.ViewModels.Vendors
         public int CategoryId { get; set; }
 
         public string CategoryName { get; set; }
-
-
     }
 }

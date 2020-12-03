@@ -7,7 +7,7 @@
     using MyWeddingPlanner.Services.Data;
     using MyWeddingPlanner.Web.ViewModels.Marketplace;
 
-    public class MarketplaceController:Controller
+    public class MarketplaceController : Controller
     {
         private readonly IVendorsService marketplaceService;
         private readonly UserManager<ApplicationUser> userManager;
@@ -29,19 +29,19 @@
             return this.View(viewModel);
         }
 
-        //[HttpPost]
-        //[Authorize]
-        //public async Task<IActionResult> Create(CreateVendorInputModel input)
-        //{
+        // [HttpPost]
+        // [Authorize]
+        // public async Task<IActionResult> Create(CreateVendorInputModel input)
+        // {
         //    if (!this.ModelState.IsValid)
         //    {
         //        return this.View(input);
         //    }
 
-        //    // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        // // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         //    var user = await this.userManager.GetUserAsync(this.User);
 
-        //    try
+        // try
         //    {
         //        await this.vendorService.CreateAsync(input, user.Id);
         //    }
@@ -51,8 +51,8 @@
         //        return this.View(input);
         //    }
 
-        //    // TODO: Redirect to recipe info page
+        // // TODO: Redirect to recipe info page
         //    return this.Redirect("/");
-        //}
+        // }
     }
 }

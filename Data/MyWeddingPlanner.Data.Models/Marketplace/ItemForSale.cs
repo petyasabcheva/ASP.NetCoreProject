@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Marketplace
+﻿namespace MyWeddingPlanner.Data.Models.Marketplace
 {
+    using System.Collections.Generic;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class ItemForSale : BaseDeletableModel<int>
     {
         public string Name { get; set; }

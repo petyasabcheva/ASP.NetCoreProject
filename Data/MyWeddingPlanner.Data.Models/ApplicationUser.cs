@@ -1,12 +1,12 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
-using System;
-using System.Collections.Generic;
-
-using Microsoft.AspNetCore.Identity;
-using MyWeddingPlanner.Data.Common.Models;
-
 namespace MyWeddingPlanner.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Identity;
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public ApplicationUser()

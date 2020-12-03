@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.MyWedding
+﻿namespace MyWeddingPlanner.Data.Models.MyWedding
 {
+    using System;
+    using System.Collections.Generic;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class Wedding : BaseModel<int>
     {
         public Wedding()

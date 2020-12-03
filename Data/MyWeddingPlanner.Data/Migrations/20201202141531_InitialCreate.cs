@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace MyWeddingPlanner.Data.Migrations
+﻿namespace MyWeddingPlanner.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +19,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true)
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -47,7 +48,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     CreatedOn = table.Column<DateTime>(nullable: false),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    DeletedOn = table.Column<DateTime>(nullable: true)
+                    DeletedOn = table.Column<DateTime>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -64,7 +65,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -81,7 +82,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -98,7 +99,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -115,7 +116,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     IsDeleted = table.Column<bool>(nullable: false),
                     DeletedOn = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -130,7 +131,7 @@ namespace MyWeddingPlanner.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -151,7 +152,7 @@ namespace MyWeddingPlanner.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
+                    ClaimValue = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -171,7 +172,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -189,7 +190,7 @@ namespace MyWeddingPlanner.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<string>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -215,7 +216,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     UserId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: true)
+                    Value = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -242,7 +243,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     Description = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    WebPage = table.Column<string>(nullable: true)
+                    WebPage = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -266,7 +267,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     OwnerId = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
                     Location = table.Column<string>(nullable: true),
-                    Budget = table.Column<int>(nullable: false)
+                    Budget = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -292,7 +293,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     CategoryId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<string>(nullable: true)
+                    AuthorId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -324,7 +325,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     CategoryId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<string>(nullable: true)
+                    AuthorId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -358,7 +359,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     Description = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: true),
                     Sold = table.Column<bool>(nullable: false),
-                    ItemsCategoryId = table.Column<int>(nullable: true)
+                    ItemsCategoryId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -392,7 +393,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     Content = table.Column<string>(nullable: true),
                     VendorId = table.Column<string>(nullable: true),
                     AuthorId = table.Column<string>(nullable: true),
-                    VendorId1 = table.Column<int>(nullable: true)
+                    VendorId1 = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -422,7 +423,7 @@ namespace MyWeddingPlanner.Data.Migrations
                 columns: table => new
                 {
                     VendorId = table.Column<int>(nullable: false),
-                    ServiceId = table.Column<int>(nullable: false)
+                    ServiceId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -455,7 +456,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     TotalAmount = table.Column<decimal>(nullable: false),
                     PaidAmount = table.Column<decimal>(nullable: false),
                     DueDate = table.Column<DateTime>(nullable: false),
-                    WeddingId = table.Column<int>(nullable: true)
+                    WeddingId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -479,7 +480,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     FullName = table.Column<string>(nullable: true),
                     Side = table.Column<int>(nullable: false),
                     Table = table.Column<string>(nullable: true),
-                    WeddingId = table.Column<int>(nullable: true)
+                    WeddingId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -504,7 +505,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Completed = table.Column<bool>(nullable: false),
-                    WeddingId = table.Column<int>(nullable: true)
+                    WeddingId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -529,7 +530,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     ArticleId = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<string>(nullable: true)
+                    AuthorId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -561,7 +562,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     Content = table.Column<string>(nullable: true),
                     AuthorId = table.Column<string>(nullable: true),
                     PostId = table.Column<string>(nullable: true),
-                    PostId1 = table.Column<int>(nullable: true)
+                    PostId1 = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -590,7 +591,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     VendorId = table.Column<int>(nullable: false),
                     Extension = table.Column<string>(nullable: true),
                     RemoteImageUrl = table.Column<string>(nullable: true),
-                    ItemForSaleId = table.Column<int>(nullable: true)
+                    ItemForSaleId = table.Column<int>(nullable: true),
                 },
                 constraints: table =>
                 {

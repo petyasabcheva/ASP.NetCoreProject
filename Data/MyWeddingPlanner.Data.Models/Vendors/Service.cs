@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.Vendors
+﻿namespace MyWeddingPlanner.Data.Models.Vendors
 {
+    using System.Collections.Generic;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class Service : BaseDeletableModel<int>
     {
         public Service()
         {
             this.VendorServices = new HashSet<VendorService>();
-
         }
 
         public string Name { get; set; }

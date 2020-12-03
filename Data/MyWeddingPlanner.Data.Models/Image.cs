@@ -1,11 +1,11 @@
-﻿using System;
-
-using MyWeddingPlanner.Data.Common.Models;
-using MyWeddingPlanner.Data.Models.Vendors;
-
-namespace MyWeddingPlanner.Data.Models
+﻿namespace MyWeddingPlanner.Data.Models
 {
-    public class Image:BaseModel<string>
+    using System;
+
+    using MyWeddingPlanner.Data.Common.Models;
+    using MyWeddingPlanner.Data.Models.Vendors;
+
+    public class Image : BaseModel<string>
     {
         public Image()
         {

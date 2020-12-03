@@ -1,6 +1,4 @@
-﻿using System.Web.Mvc;
-
-namespace MyWeddingPlanner.Web.ViewModels.Vendors
+﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
     using System.Collections.Generic;
 
@@ -8,12 +6,10 @@ namespace MyWeddingPlanner.Web.ViewModels.Vendors
 
     public class CreateVendorInputModel
     {
-        //public CreateVendorInputModel()
-        //{
+        // public CreateVendorInputModel()
+        // {
         //    this.Services=new HashSet<KeyValuePair<string,string>>();
-        //}
-
-
+        // }
         public string Name { get; set; }
 
         public IFormFile ProfilePicture { get; set; }
@@ -31,6 +27,7 @@ namespace MyWeddingPlanner.Web.ViewModels.Vendors
         public IEnumerable<IFormFile> Images { get; set; }
 
         public List<int> ReturnedServices { get; set; }
-        public IEnumerable<KeyValuePair<string,string>> Services { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> Services { get; set; }
     }
 }

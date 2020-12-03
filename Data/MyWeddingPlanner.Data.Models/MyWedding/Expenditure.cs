@@ -1,9 +1,9 @@
-﻿using System;
-
-using MyWeddingPlanner.Data.Common.Models;
-
-namespace MyWeddingPlanner.Data.Models.MyWedding
+﻿namespace MyWeddingPlanner.Data.Models.MyWedding
 {
+    using System;
+
+    using MyWeddingPlanner.Data.Common.Models;
+
     public class Expenditure : BaseDeletableModel<int>
     {
         public string Name { get; set; }

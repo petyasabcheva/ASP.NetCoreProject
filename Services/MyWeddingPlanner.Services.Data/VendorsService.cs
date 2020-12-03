@@ -1,13 +1,10 @@
 ﻿namespace MyWeddingPlanner.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using MyWeddingPlanner.Data.Common.Repositories;
-    using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Data.Models.Vendors;
     using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Vendors;
@@ -39,7 +36,6 @@
                 WebPage = input.WebPage,
                 UserId = userId,
             };
-
 
             foreach (var inputService in input.ReturnedServices)
             {
