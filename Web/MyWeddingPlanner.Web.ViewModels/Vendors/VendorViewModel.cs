@@ -1,4 +1,7 @@
-﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
+﻿using System.Collections.Generic;
+using MyWeddingPlanner.Data.Models.Vendors;
+
+namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
     public class VendorViewModel
     {
@@ -16,7 +19,7 @@
 
         //public ICollection<Image> Images { get; set; }
 
-        //public virtual ICollection<Service> Services { get; set; }
+        public virtual ICollection<string> Services { get; set; }
 
         //public virtual ICollection<VendorReview> Reviews { get; set; }
     }

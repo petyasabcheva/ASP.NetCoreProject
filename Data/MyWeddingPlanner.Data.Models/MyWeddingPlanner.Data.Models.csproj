@@ -22,5 +22,5 @@
   <ItemGroup>
     <ProjectReference Include="..\MyWeddingPlanner.Data.Common\MyWeddingPlanner.Data.Common.csproj" />
   </ItemGroup>
-  
+
 </Project>

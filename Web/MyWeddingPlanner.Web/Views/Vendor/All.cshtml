@@ -1,21 +1,26 @@
-﻿@model MyWeddingPlanner.Web.ViewModels.Vendors.VendorListViewModel
+﻿@model MyWeddingPlanner.Web.ViewModels.Vendors.VendorsListViewModel
 @{
     this.ViewData["Title"] = "All Vendors";
 }
 
 <h1>@this.ViewData["Title"]</h1>
+<a class="btn btn-primary" asp-controller="Vendor" asp-action="Create">Register a new vendor</a>
 <hr />
 <div class="row">
     @foreach (var vendor in this.Model.Vendors)
     {
-        <div class="media col-md-4">
-            <img src="https://res.cloudinary.com/ufn/image/upload/c_pad,f_auto,fl_progressive,h_500,w_445/u7cdzxvxu69pmubmtltc.jpg" width="100" class="mr-3 img-responsive">
-            <div class="media-body">
-                <p>@vendor.Name</p>
-                <p>@vendor.Description</p>
-                <p>@vendor.PhoneNumber</p>
+        <div class="card" style="width: 18rem;">
+            <img src="https://res.cloudinary.com/ufn/image/upload/c_pad,f_auto,fl_progressive,h_500,w_445/u7cdzxvxu69pmubmtltc.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">
+                    @vendor.Name
+                </h5>
+                <p class="card-text">@vendor.Description</p>
+                <a href="#" class="btn btn-primary">Details</a>
             </div>
         </div>
     }
 </div>
 <hr />
+
+<partial name="_PagingPartial" model="@Model" />

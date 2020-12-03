@@ -12,7 +12,7 @@
     {
         Task CreateAsync(CreateVendorInputModel input, string userId);
 
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 
         int GetCount();
 

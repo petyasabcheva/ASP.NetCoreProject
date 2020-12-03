@@ -64,9 +64,13 @@
             await this.vendorRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>()
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
         {
-            var vendors = this.vendorRepository.AllAsNoTracking()
+            var vendors = this.vendorRepository
+                .AllAsNoTracking()
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
                 .To<T>().ToList();
             return vendors;
         }

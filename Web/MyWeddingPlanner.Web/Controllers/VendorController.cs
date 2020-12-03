@@ -52,17 +52,18 @@
             return this.Redirect("/");
         }
 
-        //public IActionResult All()
-        //{
-        //    var vendors = this.vendorService.GetAll<VendorViewModel>().ToList();
-        //    var vendorsCount = this.vendorService.GetCount();
-        //    var vendorsList = new VendorListViewModel
-        //    {
-        //        Vendors = vendors,
-        //        VendorsCount = vendorsCount,
-        //    };
-        //    return this.View(vendorsList);
-        //}
+        public IActionResult All(int id=1)
+        {
+            const int itemsPerPage = 12;
+            var viewModel=new VendorsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                Vendors = this.vendorService.GetAll<VendorInListViewModel>(id,12),
+                ItemsCount = this.vendorService.GetCount(),
+            };
+            return this.View(viewModel);
+        }
 
         //public IActionResult ById(int id)
         //{
