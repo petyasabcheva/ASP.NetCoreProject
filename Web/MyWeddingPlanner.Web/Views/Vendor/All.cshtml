@@ -9,16 +9,16 @@
 <div class="row">
     @foreach (var vendor in this.Model.Vendors)
     {
-        <div class="card" style="width: 18rem;">
-            <img src=@vendor.ImageUrl class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">
-                    @vendor.ImageUrl
-                </h5>
-                <p class="card-text">@vendor.Description</p>
-                <a href="#" class="btn btn-primary">Details</a>
-            </div>
+    <div class="card" style="width: 18rem;">
+        <img src=@vendor.ImageUrl class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">
+                @vendor.Name
+            </h5>
+            <p class="card-text">@string.Join(", ",vendor.ServicesNames)</p>
+            <a href="#" class="btn btn-primary">Details</a>
         </div>
+    </div>
     }
 </div>
 <hr />

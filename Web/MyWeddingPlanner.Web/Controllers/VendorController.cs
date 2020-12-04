@@ -55,16 +55,16 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Vendors = this.vendorService.GetAll<VendorInListViewModel>(id, 12),
+                Vendors = this.vendorService.GetAll(id, 12),
                 ItemsCount = this.vendorService.GetCount(),
             };
             return this.View(viewModel);
         }
 
-        // public IActionResult ById(int id)
-        // {
-        //    var vendor = this.vendorService.GetById<VendorViewModel>(id);
-        //    return this.View(vendor);
-        // }
+        public IActionResult ById(int id)
+        {
+            //var vendor = this.vendorService.GetById<VendorViewModel>(id);
+            return this.View();
+        }
     }
 }

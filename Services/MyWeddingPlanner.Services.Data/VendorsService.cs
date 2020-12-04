@@ -1,4 +1,6 @@
-﻿namespace MyWeddingPlanner.Services.Data
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace MyWeddingPlanner.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -72,8 +74,6 @@
                 };
                 vendor.Images.Add(dbImage);
 
-                dbImage.RemoteImageUrl = "/images/vendors/" + dbImage.Id + '.' + extension;
-
                 var physicalPath = $"{imagePath}/vendors/{dbImage.Id}.{extension}";
                 using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
                 await image.CopyToAsync(fileStream);
@@ -83,14 +83,23 @@
             await this.vendorRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
+        public IEnumerable<VendorInListViewModel> GetAll(int page, int itemsPerPage)
         {
             var vendors = this.vendorRepository
                 .AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .To<T>().ToList();
+                .Select(x => new VendorInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ServicesIds = x.VendorServices.Select(x => x.ServiceId).ToArray(),
+                    ServicesNames = x.VendorServices.Select(x => x.Service.Name).ToArray(),
+                    ImageUrl =
+                        "/images/vendors/" + x.Images.FirstOrDefault().Id + '.' + x.Images.FirstOrDefault().Extension,
+                }).ToList();
             return vendors;
         }
 

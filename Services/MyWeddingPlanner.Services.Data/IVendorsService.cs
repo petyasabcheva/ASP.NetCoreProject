@@ -9,7 +9,7 @@
     {
         Task CreateAsync(CreateVendorInputModel input, string userId,string imagePath);
 
-        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
+        IEnumerable<VendorInListViewModel> GetAll(int page, int itemsPerPage);
 
         int GetCount();
 
