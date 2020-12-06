@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyWeddingPlanner.Data;
 
 namespace MyWeddingPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201206103923_UpdateItemsForSale")]
+    partial class UpdateItemsForSale
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -486,17 +488,12 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<string>("RemoteImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("VendorId")
+                    b.Property<int>("VendorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemForSaleId");
-
-                    b.HasIndex("UserId");
 
                     b.HasIndex("VendorId");
 
@@ -530,9 +527,6 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");
@@ -979,15 +973,13 @@ namespace MyWeddingPlanner.Data.Migrations
                         .WithMany("Images")
                         .HasForeignKey("ItemForSaleId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", null)
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", "Vendor")
                         .WithMany("Images")
-                        .HasForeignKey("VendorId");
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", b =>

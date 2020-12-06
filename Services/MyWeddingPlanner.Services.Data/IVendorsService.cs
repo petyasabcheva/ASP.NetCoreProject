@@ -14,5 +14,7 @@
         int GetCount();
 
         SingleVendorViewModel GetById(int id);
+
+        IEnumerable<VendorInListViewModel> GetByCategory(int page, int itemsPerPage, int serviceId);
     }
 }

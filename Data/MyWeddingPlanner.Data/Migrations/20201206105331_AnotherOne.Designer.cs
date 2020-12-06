@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyWeddingPlanner.Data;
 
 namespace MyWeddingPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201206105331_AnotherOne")]
+    partial class AnotherOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -474,6 +476,10 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Extension")
                         .HasColumnType("nvarchar(max)");
 
@@ -489,18 +495,15 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("VendorId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ItemForSaleId");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("VendorId");
-
                     b.ToTable("Images");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Image");
                 });
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", b =>
@@ -530,9 +533,6 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");
@@ -856,6 +856,18 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.ToTable("VendorServices");
                 });
 
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorImage", b =>
+                {
+                    b.HasBaseType("MyWeddingPlanner.Data.Models.Image");
+
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("VendorId");
+
+                    b.HasDiscriminator().HasValue("VendorImage");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationRole", null)
@@ -983,10 +995,6 @@ namespace MyWeddingPlanner.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", null)
-                        .WithMany("Images")
-                        .HasForeignKey("VendorId");
-
                     b.Navigation("User");
                 });
 
@@ -1080,6 +1088,17 @@ namespace MyWeddingPlanner.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Service");
+
+                    b.Navigation("Vendor");
+                });
+
+            modelBuilder.Entity("MyWeddingPlanner.Data.Models.Vendors.VendorImage", b =>
+                {
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", "Vendor")
+                        .WithMany("Images")
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Vendor");
                 });

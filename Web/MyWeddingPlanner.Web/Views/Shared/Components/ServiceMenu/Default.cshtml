@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MyWeddingPlanner.Data.Models.Vendors.Service>
+
+<li class="nav-item">
+    <div class="dropdown show">
+        <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Vendors
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="All">View all</a>
+            <div class="dropdown-divider"></div>
+            @foreach (var service in @Model)
+            {
+                <a class="dropdown-item" asp-controller="Vendor" asp-action="Category" asp-route-serviceId="@service.Id" asp-route-service="@service.Name">@service.Name</a>
+            }
+        </div>
+    </div>
+</li>

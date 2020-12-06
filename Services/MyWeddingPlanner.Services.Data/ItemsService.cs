@@ -1,4 +1,6 @@
-﻿namespace MyWeddingPlanner.Services.Data
+﻿using MyWeddingPlanner.Web.ViewModels.Vendors;
+
+namespace MyWeddingPlanner.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -86,13 +88,42 @@
             return this.itemsRepository.All().Count();
         }
 
-        public T GetById<T>(int id)
+        public SingleItemViewModel GetById(int id)
         {
             var item = this.itemsRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .Select(x => new ItemsInListViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                CategoryName = x.Category.Name,
+                Price = x.Price,
+                ImageUrls = x.Images.Select(x => $"/images/itemsForSale/{x.Id}.{x.Extension}").ToArray(),
+                Description = x.Description,
+                SellerEmail = x.User.Email,
+            }).FirstOrDefault();
 
             return item;
+        }
+
+        public IEnumerable<ItemsInListViewModel> GetByCategory(int page, int itemsPerPage, int categoryId)
+        {
+            var items = this.itemsRepository
+                .AllAsNoTracking().Where(i=>i.Category.Id == categoryId)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new ItemsInListViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryId = x.CategoryId,
+                    CategoryName = x.Category.Name,
+                    Price = x.Price,
+                    ImageUrl =
+                        "/images/itemsForSale/" + x.Images.FirstOrDefault().Id + '.' + x.Images.FirstOrDefault().Extension,
+                }).ToList();
+            return items;
         }
     }
 }

@@ -126,5 +126,27 @@
 
             return vendor;
         }
+
+        public IEnumerable<VendorInListViewModel> GetByCategory (int page,int itemsPerPage, int serviceId)
+        {
+
+            var vendors = this.vendorRepository
+                .AllAsNoTracking().Where(v => v.VendorServices.Any(vs => vs.Service.Id == serviceId))
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .Select(x => new VendorInListViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ServicesIds = x.VendorServices.Select(x => x.ServiceId).ToArray(),
+                    ServicesNames = x.VendorServices.Select(x => x.Service.Name).ToArray(),
+                    ImageUrl =
+                        "/images/vendors/" + x.Images.FirstOrDefault().Id + '.' + x.Images.FirstOrDefault().Extension,
+                }).ToList();
+            return vendors;
+        }
+
     }
 }

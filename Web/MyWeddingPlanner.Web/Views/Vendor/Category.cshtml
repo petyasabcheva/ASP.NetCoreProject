@@ -1,0 +1,31 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.Vendors.VendorsListViewModel
+@{
+    this.ViewData["Title"] = @Model.CategoryName;
+} 
+
+<h1>@this.ViewData["Title"]</h1>
+<a class="btn btn-secondary" asp-controller="Vendor" asp-action="Create">Register a new vendor</a>
+<hr />
+<div class="row">
+    @if (@Model.Vendors.Count() == 0)
+    {
+    <h2> Vendors in category @Model.CategoryName will be available soon :) </h2>
+    }
+
+    @foreach (var vendor in this.Model.Vendors)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src=@vendor.ImageUrl class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a asp-action="ById" asp-route-id="@vendor.Id"></a>
+                    @vendor.Name
+                </h5>
+                <p class="card-text">@string.Join(", ", vendor.ServicesNames)</p>
+                <a asp-action="ById" asp-route-id="@vendor.Id" class="btn btn-secondary">Details</a>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+
+<partial name="_PagingPartial" model="@Model" />

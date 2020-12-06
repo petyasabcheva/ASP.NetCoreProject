@@ -13,6 +13,8 @@
 
         int GetCount();
 
-        T GetById<T>(int id);
+        SingleItemViewModel GetById(int id);
+
+        IEnumerable<ItemsInListViewModel> GetByCategory(int page, int itemsPerPage, int categoryId);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace MyWeddingPlanner.Web.Controllers
+﻿using MyWeddingPlanner.Common;
+
+namespace MyWeddingPlanner.Web.Controllers
 {
     using System.Threading.Tasks;
 
@@ -64,6 +66,21 @@
         {
             var vendor = this.vendorService.GetById(id);
             return this.View(vendor);
+        }
+
+        [Authorize]
+        public IActionResult Category (int serviceId,string service)
+        {
+            const int itemsPerPage = 12;
+            var viewModel = new VendorsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = 1,
+                Vendors = this.vendorService.GetByCategory(1, 12, serviceId),
+                ItemsCount = this.vendorService.GetCount(),
+                CategoryName = service,
+            };
+            return this.View(viewModel);
         }
     }
 }

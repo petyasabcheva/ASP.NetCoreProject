@@ -5,5 +5,7 @@
     public class VendorsListViewModel : PagingViewModel
     {
         public IEnumerable<VendorInListViewModel> Vendors { get; set; }
+
+        public string CategoryName { get; set; }
     }
 }

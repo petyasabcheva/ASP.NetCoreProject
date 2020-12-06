@@ -4,7 +4,7 @@
 }
 
 <h1>@this.ViewData["Title"]</h1>
-<a class="btn btn-primary" asp-controller="Vendor" asp-action="Create">Register a new vendor</a>
+<a class="btn btn-secondary" asp-controller="Vendor" asp-action="Create">Register a new vendor</a>
 <hr />
 <div class="row">
     @foreach (var vendor in this.Model.Vendors)
@@ -16,7 +16,7 @@
                 @vendor.Name
             </h5>
             <p class="card-text">@string.Join(", ",vendor.ServicesNames)</p>
-            <a asp-action="ById" asp-route-id="@vendor.Id" class="btn btn-primary">Details</a>
+            <a asp-action="ById" asp-route-id="@vendor.Id" class="btn btn-secondary">Details</a>
         </div>
     </div>
     }

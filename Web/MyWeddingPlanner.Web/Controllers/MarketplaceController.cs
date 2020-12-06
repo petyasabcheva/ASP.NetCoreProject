@@ -73,5 +73,27 @@
             };
             return this.View(viewModel);
         }
+
+        [Authorize]
+        public IActionResult Category (int categoryId,string categoryName)
+        {
+            const int itemsPerPage = 12;
+            var viewModel = new ItemsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = 1,
+                Items = this.itemsService.GetByCategory(1, 12,categoryId),
+                ItemsCount = this.itemsService.GetCount(),
+                CategoryName = categoryName,
+            };
+            return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var item = this.itemsService.GetById(id);
+            return this.View(item);
+        }
+
     }
 }
