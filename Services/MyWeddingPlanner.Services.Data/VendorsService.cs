@@ -107,11 +107,22 @@
             return this.vendorRepository.All().Count();
         }
 
-        public T GetById<T>(int id)
+        public SingleVendorViewModel GetById(int id)
         {
             var vendor = this.vendorRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<T>().FirstOrDefault();
+                .Select(x => new SingleVendorViewModel
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    Email = x.Email,
+                    Id = x.Id,
+                    ImageUrls = x.Images.Select(x=> $"/images/vendors/{x.Id}.{x.Extension}").ToArray(),
+                    PhoneNumber = x.PhoneNumber,
+                    ServicesNames = x.VendorServices.Select(x=>x.Service.Name).ToArray(),
+                    User = x.User.Email,
+                    WebPage = x.WebPage,
+                }).FirstOrDefault();
 
             return vendor;
         }

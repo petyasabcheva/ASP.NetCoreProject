@@ -13,6 +13,6 @@
 
         int GetCount();
 
-        T GetById<T>(int id);
+        SingleVendorViewModel GetById(int id);
     }
 }

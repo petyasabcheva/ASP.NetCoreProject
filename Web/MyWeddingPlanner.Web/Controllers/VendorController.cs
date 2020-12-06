@@ -62,8 +62,8 @@
 
         public IActionResult ById(int id)
         {
-            // var vendor = this.vendorService.GetById<VendorViewModel>(id);
-            return this.View();
+            var vendor = this.vendorService.GetById(id);
+            return this.View(vendor);
         }
     }
 }
