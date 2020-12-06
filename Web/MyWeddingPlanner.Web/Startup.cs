@@ -69,6 +69,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IVendorsService, VendorsService>();
             services.AddTransient<IServicesService, ServicesService>();
+            services.AddTransient<IItemsCategoriesService, ItemsCategoriesService>();
             services.AddTransient<IItemsService, ItemsService>();
         }
 

@@ -2,9 +2,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyWeddingPlanner.Data;
 
 namespace MyWeddingPlanner.Data.Migrations
 {
@@ -486,12 +483,17 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<string>("RemoteImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VendorId")
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int?>("VendorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemForSaleId");
+
+                    b.HasIndex("UserId");
 
                     b.HasIndex("VendorId");
 
@@ -505,8 +507,8 @@ namespace MyWeddingPlanner.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -520,14 +522,14 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ItemsCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("Sold")
                         .HasColumnType("bit");
@@ -537,9 +539,9 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IsDeleted");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("ItemsCategoryId");
+                    b.HasIndex("IsDeleted");
 
                     b.HasIndex("UserId");
 
@@ -974,24 +976,30 @@ namespace MyWeddingPlanner.Data.Migrations
                         .WithMany("Images")
                         .HasForeignKey("ItemForSaleId");
 
-                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", "Vendor")
-                        .WithMany("Images")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("Vendor");
+                    b.HasOne("MyWeddingPlanner.Data.Models.Vendors.Vendor", null)
+                        .WithMany("Images")
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.Marketplace.ItemForSale", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.Marketplace.ItemsCategory", null)
+                    b.HasOne("MyWeddingPlanner.Data.Models.Marketplace.ItemsCategory", "Category")
                         .WithMany("CategoryContents")
-                        .HasForeignKey("ItemsCategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Category");
 
                     b.Navigation("User");
                 });

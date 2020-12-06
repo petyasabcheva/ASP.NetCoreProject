@@ -1,14 +1,6 @@
-﻿using MyWeddingPlanner.Data.Models;
-
-namespace MyWeddingPlanner.Web.ViewModels.Vendors
+﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
-    using System.Linq;
-
-    using AutoMapper;
-    using MyWeddingPlanner.Data.Models.Vendors;
-    using MyWeddingPlanner.Services.Mapping;
-
-    public class VendorInListViewModel 
+    public class VendorInListViewModel
     {
         public int Id { get; set; }
 
@@ -22,12 +14,12 @@ namespace MyWeddingPlanner.Web.ViewModels.Vendors
 
         public string Description { get; set; }
 
-        //public void CreateMappings(IProfileExpression configuration)
-        //{
+        // public void CreateMappings(IProfileExpression configuration)
+        // {
         //    configuration.CreateMap<Vendor, VendorInListViewModel>()
         //        .ForMember(x => x.Image, opt =>
         //            opt.MapFrom(x =>
         //                x.Images.FirstOrDefault()));
-        //}
+        // }
     }
 }

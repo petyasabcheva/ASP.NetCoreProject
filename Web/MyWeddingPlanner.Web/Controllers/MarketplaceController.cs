@@ -1,5 +1,8 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -9,16 +12,19 @@
 
     public class MarketplaceController : Controller
     {
-        private readonly IVendorsService marketplaceService;
+        private readonly IItemsService itemsService;
+        private readonly IItemsCategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
 
         public MarketplaceController(
-            IVendorsService marketplaceService,
+            IItemsService itemsService,
             UserManager<ApplicationUser> userManager,
-            IWebHostEnvironment environment)
+            IWebHostEnvironment environment,
+            IItemsCategoriesService categoriesService)
         {
-            this.marketplaceService = marketplaceService;
+            this.itemsService = itemsService;
+            this.categoriesService = categoriesService;
             this.userManager = userManager;
             this.environment = environment;
         }
@@ -26,33 +32,46 @@
         public IActionResult Create()
         {
             var viewModel = new CreateItemInputModel();
+            viewModel.Categories = this.categoriesService.GetAllAsKeyValuePairs();
             return this.View(viewModel);
         }
 
-        // [HttpPost]
-        // [Authorize]
-        // public async Task<IActionResult> Create(CreateVendorInputModel input)
-        // {
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(input);
-        //    }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create(CreateItemInputModel input)
+        {
+            // if (!this.ModelState.IsValid)
+            // {
+            //    return this.View(input);
+            // }
+            var user = await this.userManager.GetUserAsync(this.User);
 
-        // // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    var user = await this.userManager.GetUserAsync(this.User);
+            // try
+            // {
+            await this.itemsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
 
-        // try
-        //    {
-        //        await this.vendorService.CreateAsync(input, user.Id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.ModelState.AddModelError(string.Empty, ex.Message);
-        //        return this.View(input);
-        //    }
+            // }
+            // catch (Exception ex)
+            // {
+            //    this.ModelState.AddModelError(string.Empty, ex.Message);
+            //    return this.View(input);
+            // }
 
-        // // TODO: Redirect to recipe info page
-        //    return this.Redirect("/");
-        // }
+            // TODO: Redirect to recipe info page
+            return this.Redirect("/");
+        }
+
+        public IActionResult All(int id = 1)
+        {
+            const int itemsPerPage = 12;
+            var viewModel = new ItemsListViewModel
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                Items = this.itemsService.GetAll(id, 12),
+                ItemsCount = this.itemsService.GetCount(),
+            };
+            return this.View(viewModel);
+        }
     }
 }

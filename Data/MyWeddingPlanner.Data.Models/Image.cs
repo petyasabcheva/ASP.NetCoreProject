@@ -3,7 +3,6 @@
     using System;
 
     using MyWeddingPlanner.Data.Common.Models;
-    using MyWeddingPlanner.Data.Models.Vendors;
 
     public class Image : BaseModel<string>
     {
@@ -12,9 +11,9 @@
             this.Id = Guid.NewGuid().ToString();
         }
 
-        public int VendorId { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
-        public virtual Vendor Vendor { get; set; }
+        public string UserId { get; set; }
 
         public string Extension { get; set; }
 

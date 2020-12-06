@@ -7,9 +7,9 @@
 
     public interface IItemsService
     {
-        Task CreateAsync(CreateItemInputModel input, string userId);
+        Task CreateAsync(CreateItemInputModel input, string userId, string imagePath);
 
-        IEnumerable<T> GetAll<T>();
+        IEnumerable<ItemsInListViewModel> GetAll(int page, int itemsPerPage);
 
         int GetCount();
 

@@ -1,6 +1,5 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
-    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -63,7 +62,7 @@
 
         public IActionResult ById(int id)
         {
-            //var vendor = this.vendorService.GetById<VendorViewModel>(id);
+            // var vendor = this.vendorService.GetById<VendorViewModel>(id);
             return this.View();
         }
     }

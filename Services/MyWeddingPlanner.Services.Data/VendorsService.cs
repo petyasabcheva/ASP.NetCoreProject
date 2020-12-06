@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -68,9 +66,10 @@ namespace MyWeddingPlanner.Services.Data
                     throw new Exception($"Invalid image extension {extension}");
                 }
 
-                var dbImage = new Image
+                var dbImage = new Image()
                 {
                     Extension = extension,
+                    UserId = userId,
                 };
                 vendor.Images.Add(dbImage);
 
