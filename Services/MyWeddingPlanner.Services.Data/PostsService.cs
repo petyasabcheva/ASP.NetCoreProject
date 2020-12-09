@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models.Forum;
-using MyWeddingPlanner.Data.Models.Marketplace;
-using MyWeddingPlanner.Web.ViewModels.Forum;
-using MyWeddingPlanner.Web.ViewModels.Marketplace;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
-    public class PostsService:IPostsService
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Web.ViewModels.Forum;
+
+    public class PostsService : IPostsService
     {
         private readonly IDeletableEntityRepository<ForumPost> postsRepository;
         private readonly IDeletableEntityRepository<ForumCategory> categoryRepository;
@@ -21,7 +18,6 @@ namespace MyWeddingPlanner.Services.Data
         {
             this.categoryRepository = categoryRepository;
             this.postsRepository = postsRepository;
-
         }
 
         public async Task CreateAsync(CreatePostInputModel input, string userId)
@@ -52,7 +48,7 @@ namespace MyWeddingPlanner.Services.Data
                     Id = x.Id,
                     Title = x.Title,
                     Content = x.Content,
-                    UserName = x.Author.UserName,
+                    Email = x.Author.Email,
                 }).ToList();
             return items;
         }
@@ -60,7 +56,6 @@ namespace MyWeddingPlanner.Services.Data
         public int GetCount()
         {
             return this.postsRepository.All().Count();
-
         }
 
         public PostViewModel GetById(int id)

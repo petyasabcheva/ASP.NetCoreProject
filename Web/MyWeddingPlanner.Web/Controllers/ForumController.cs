@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using MyWeddingPlanner.Data.Models;
-using MyWeddingPlanner.Services.Data;
-using MyWeddingPlanner.Web.ViewModels.Forum;
-using MyWeddingPlanner.Web.ViewModels.Marketplace;
-
-namespace MyWeddingPlanner.Web.Controllers
+﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System.Threading.Tasks;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using MyWeddingPlanner.Data.Models;
+    using MyWeddingPlanner.Services.Data;
+    using MyWeddingPlanner.Web.ViewModels.Forum;
+
     public class ForumController : Controller
     {
         private readonly IPostsService postsService;
@@ -30,17 +27,16 @@ namespace MyWeddingPlanner.Web.Controllers
             this.userManager = userManager;
         }
 
-        //public IActionResult ById(int id)
-        //{
+        // public IActionResult ById(int id)
+        // {
         //    var postViewModel = this.postsService.GetById<PostViewModel>(id);
         //    if (postViewModel == null)
         //    {
         //        return this.NotFound();
         //    }
 
-        //    return this.View(postViewModel);
-        //}
-
+        // return this.View(postViewModel);
+        // }
         public IActionResult All(int id = 1)
         {
             const int itemsPerPage = 12;
@@ -85,6 +81,5 @@ namespace MyWeddingPlanner.Web.Controllers
             // TODO: Redirect to recipe info page
             return this.Redirect("/");
         }
-
     }
 }

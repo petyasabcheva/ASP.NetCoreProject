@@ -1,18 +1,16 @@
-﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿namespace MyWeddingPlanner.Web.ViewModels.Blog
 {
     using System.Collections.Generic;
 
-    public class CreatePostInputModel
+    public class CreateArticleInputModel
     {
-        public string Title { get; set; }
-
-        public string Category { get; set; }
-
         public int CategoryId { get; set; }
+
+        public string Title { get; set; }
 
         public string Content { get; set; }
 
-        public string UserId { get; set; }
+        public string AuthorId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> Categories { get; set; }
     }

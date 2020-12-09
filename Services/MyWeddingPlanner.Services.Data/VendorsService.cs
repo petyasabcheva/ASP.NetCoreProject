@@ -117,9 +117,9 @@
                     Description = x.Description,
                     Email = x.Email,
                     Id = x.Id,
-                    ImageUrls = x.Images.Select(x=> $"/images/vendors/{x.Id}.{x.Extension}").ToArray(),
+                    ImageUrls = x.Images.Select(x => $"/images/vendors/{x.Id}.{x.Extension}").ToArray(),
                     PhoneNumber = x.PhoneNumber,
-                    ServicesNames = x.VendorServices.Select(x=>x.Service.Name).ToArray(),
+                    ServicesNames = x.VendorServices.Select(x => x.Service.Name).ToArray(),
                     User = x.User.Email,
                     WebPage = x.WebPage,
                 }).FirstOrDefault();
@@ -127,9 +127,8 @@
             return vendor;
         }
 
-        public IEnumerable<VendorInListViewModel> GetByCategory (int page,int itemsPerPage, int serviceId)
+        public IEnumerable<VendorInListViewModel> GetByCategory(int page, int itemsPerPage, int serviceId)
         {
-
             var vendors = this.vendorRepository
                 .AllAsNoTracking().Where(v => v.VendorServices.Any(vs => vs.Service.Id == serviceId))
                 .OrderByDescending(x => x.Id)
@@ -147,6 +146,5 @@
                 }).ToList();
             return vendors;
         }
-
     }
 }

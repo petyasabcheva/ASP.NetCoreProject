@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyWeddingPlanner.Data;
-using MyWeddingPlanner.Data.Models.Marketplace;
-using MyWeddingPlanner.Data.Models.Vendors;
-
-namespace MyWeddingPlanner.Web.Views.ViewComponents
+﻿namespace MyWeddingPlanner.Web.Views.ViewComponents
 {
-    public class MarketplaceMenuViewComponent:ViewComponent
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using MyWeddingPlanner.Data;
+    using MyWeddingPlanner.Data.Models.Marketplace;
+
+    public class MarketplaceMenuViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext db;
 

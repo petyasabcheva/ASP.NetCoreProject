@@ -11,7 +11,7 @@ namespace MyWeddingPlanner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20201206111847_oneMore")]
-    partial class oneMore
+    partial class OneMore
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

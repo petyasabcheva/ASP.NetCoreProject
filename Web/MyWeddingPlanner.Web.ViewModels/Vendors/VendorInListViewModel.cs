@@ -1,6 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
-    public class VendorInListViewModel: SingleVendorViewModel
+    public class VendorInListViewModel : SingleVendorViewModel
     {
         public string ImageUrl { get; set; }
 

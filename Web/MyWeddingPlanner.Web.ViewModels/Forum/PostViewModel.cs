@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class PostViewModel
     {
         public int Id { get; set; }
@@ -16,12 +16,11 @@ namespace MyWeddingPlanner.Web.ViewModels.Forum
 
         public string Content { get; set; }
 
-        //public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
-
-        public string UserName { get; set; }
+        // public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
+        public string Email { get; set; }
 
         public int VotesCount { get; set; }
 
-        //public IEnumerable<PostCommentViewModel> Comments { get; set; }
+        // public IEnumerable<PostCommentViewModel> Comments { get; set; }
     }
 }

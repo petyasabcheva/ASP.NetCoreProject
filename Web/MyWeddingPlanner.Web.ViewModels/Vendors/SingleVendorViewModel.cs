@@ -1,9 +1,5 @@
-﻿using MyWeddingPlanner.Data.Models;
-
-namespace MyWeddingPlanner.Web.ViewModels.Vendors
+﻿namespace MyWeddingPlanner.Web.ViewModels.Vendors
 {
-    using System.Collections.Generic;
-
     public class SingleVendorViewModel
     {
         public int Id { get; set; }

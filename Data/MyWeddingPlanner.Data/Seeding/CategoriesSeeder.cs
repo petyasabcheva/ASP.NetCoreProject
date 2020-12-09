@@ -1,37 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MyWeddingPlanner.Common;
-using MyWeddingPlanner.Data.Models;
-using MyWeddingPlanner.Data.Models.Forum;
-using MyWeddingPlanner.Data.Models.Marketplace;
-using MyWeddingPlanner.Data.Models.Vendors;
-
-namespace MyWeddingPlanner.Data.Seeding
+﻿namespace MyWeddingPlanner.Data.Seeding
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using MyWeddingPlanner.Common;
+    using MyWeddingPlanner.Data.Models.Blog;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Data.Models.Marketplace;
+    using MyWeddingPlanner.Data.Models.Vendors;
+
     public class CategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (!dbContext.Services.Any())
             {
-
-
-                var services = GlobalConstants.allServices.Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x)
+                var services = GlobalConstants.AllServices.Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x)
                     .ToList();
 
                 foreach (var service in services)
                 {
                     await dbContext.Services.AddAsync(new Service() { Name = service });
-
                 }
             }
 
             if (!dbContext.ItemsCategories.Any())
             {
-                var itemCategories = GlobalConstants.allMarketplaceCategories
+                var itemCategories = GlobalConstants.AllMarketplaceCategories
                     .Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x).ToList();
 
                 foreach (var category in itemCategories)
@@ -42,7 +38,7 @@ namespace MyWeddingPlanner.Data.Seeding
 
             if (!dbContext.ForumCategories.Any())
             {
-                var itemCategories = GlobalConstants.allServices
+                var itemCategories = GlobalConstants.AllServices
                     .Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x).ToList();
 
                 foreach (var category in itemCategories)
@@ -50,6 +46,18 @@ namespace MyWeddingPlanner.Data.Seeding
                     await dbContext.ForumCategories.AddAsync(new ForumCategory() { Name = category });
                 }
             }
+
+            if (!dbContext.BlogCategories.Any())
+            {
+                var itemCategories = GlobalConstants.AllServices
+                    .Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x).ToList();
+
+                foreach (var category in itemCategories)
+                {
+                    await dbContext.BlogCategories.AddAsync(new BlogCategory() { Name = category });
+                }
+            }
+
             await dbContext.SaveChangesAsync();
         }
     }

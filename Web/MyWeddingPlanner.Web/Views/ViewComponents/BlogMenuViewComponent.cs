@@ -1,4 +1,4 @@
-﻿namespace MyWeddingPlanner.Data.Common.ViewComponents
+﻿namespace MyWeddingPlanner.Web.Views.ViewComponents
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -6,13 +6,14 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using MyWeddingPlanner.Data.Models.Vendors;
+    using MyWeddingPlanner.Data;
+    using MyWeddingPlanner.Data.Models.Blog;
 
-    public class ServiceMenuViewComponent : ViewComponent
+    public class BlogMenuViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext db;
 
-        public ServiceMenuViewComponent(ApplicationDbContext db)
+        public BlogMenuViewComponent(ApplicationDbContext db)
         {
             this.db = db;
         }
@@ -23,9 +24,9 @@
             return this.View(items);
         }
 
-        private Task<List<Service>> GetItemsAsync()
+        private Task<List<BlogCategory>> GetItemsAsync()
         {
-            return db.Services.OrderBy(s => s.Name).ToListAsync();
+            return db.BlogCategories.OrderBy(s => s.Name).ToListAsync();
         }
     }
 }

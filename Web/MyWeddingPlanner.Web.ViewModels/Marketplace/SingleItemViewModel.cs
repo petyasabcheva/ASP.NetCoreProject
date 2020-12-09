@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyWeddingPlanner.Web.ViewModels.Marketplace
+﻿namespace MyWeddingPlanner.Web.ViewModels.Marketplace
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public class SingleItemViewModel
     {
         public int Id { get; set; }

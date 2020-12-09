@@ -49,7 +49,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Administration\Controllers\" />
-    <Folder Include="Views\Blog\" />
   </ItemGroup>
 
   <ItemGroup>

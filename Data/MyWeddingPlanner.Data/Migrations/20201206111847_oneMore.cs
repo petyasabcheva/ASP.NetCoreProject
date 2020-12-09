@@ -2,7 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore.Migrations;
 
-    public partial class oneMore : Migration
+    public partial class OneMore : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

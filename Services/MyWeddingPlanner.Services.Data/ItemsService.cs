@@ -1,6 +1,4 @@
-﻿using MyWeddingPlanner.Web.ViewModels.Vendors;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +11,7 @@ namespace MyWeddingPlanner.Services.Data
     using MyWeddingPlanner.Data.Models.Marketplace;
     using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Marketplace;
+    using MyWeddingPlanner.Web.ViewModels.Vendors;
 
     public class ItemsService : IItemsService
     {
@@ -93,15 +92,15 @@ namespace MyWeddingPlanner.Services.Data
             var item = this.itemsRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
                 .Select(x => new ItemsInListViewModel()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                CategoryName = x.Category.Name,
-                Price = x.Price,
-                ImageUrls = x.Images.Select(x => $"/images/itemsForSale/{x.Id}.{x.Extension}").ToArray(),
-                Description = x.Description,
-                SellerEmail = x.User.Email,
-            }).FirstOrDefault();
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CategoryName = x.Category.Name,
+                    Price = x.Price,
+                    ImageUrls = x.Images.Select(x => $"/images/itemsForSale/{x.Id}.{x.Extension}").ToArray(),
+                    Description = x.Description,
+                    SellerEmail = x.User.Email,
+                }).FirstOrDefault();
 
             return item;
         }
@@ -109,7 +108,7 @@ namespace MyWeddingPlanner.Services.Data
         public IEnumerable<ItemsInListViewModel> GetByCategory(int page, int itemsPerPage, int categoryId)
         {
             var items = this.itemsRepository
-                .AllAsNoTracking().Where(i=>i.Category.Id == categoryId)
+                .AllAsNoTracking().Where(i => i.Category.Id == categoryId)
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)

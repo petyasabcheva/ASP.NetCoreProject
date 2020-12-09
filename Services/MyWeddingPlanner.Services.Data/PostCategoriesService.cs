@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models.Forum;
-using MyWeddingPlanner.Data.Models.Marketplace;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
-    public class PostCategoriesService:IPostCategoriesService
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Data.Models.Marketplace;
+
+    public class PostCategoriesService : IPostCategoriesService
     {
         private readonly IDeletableEntityRepository<ForumCategory> categoryRepository;
 

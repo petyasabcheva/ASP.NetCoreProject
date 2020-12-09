@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using MyWeddingPlanner.Web.ViewModels.Forum;
-using MyWeddingPlanner.Web.ViewModels.Marketplace;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    using MyWeddingPlanner.Web.ViewModels.Forum;
+    using MyWeddingPlanner.Web.ViewModels.Marketplace;
+
     public interface IPostsService
     {
         Task CreateAsync(CreatePostInputModel input, string userId);

@@ -1,8 +1,4 @@
 ﻿@using MyWeddingPlanner.Common
-@{ var services = GlobalConstants.allServices.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList(); 
-    var categories = GlobalConstants.allMarketplaceCategories.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList();
-}
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,26 +22,9 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         @await Component.InvokeAsync("ServiceMenu")
-                        @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>*@
                         @await Component.InvokeAsync("MarketplaceMenu")
                         @await Component.InvokeAsync("ForumMenu")
-
-                        <li class="nav-item">
-                            <div class="dropdown show">
-                                <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Blog
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    @*<a class="nav-link text-dark" asp-area="" asp-controller="Vendor" asp-action="All">View all</a>*@
-                                    <a class="dropdown-item" href="#">All posts</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </li>
+                        @await Component.InvokeAsync("BlogMenu")
 
                     </ul>
                 </div>

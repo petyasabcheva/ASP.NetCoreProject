@@ -75,14 +75,14 @@
         }
 
         [Authorize]
-        public IActionResult Category (int categoryId,string categoryName)
+        public IActionResult Category(int categoryId, string categoryName)
         {
             const int itemsPerPage = 12;
             var viewModel = new ItemsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = 1,
-                Items = this.itemsService.GetByCategory(1, 12,categoryId),
+                Items = this.itemsService.GetByCategory(1, 12, categoryId),
                 ItemsCount = this.itemsService.GetCount(),
                 CategoryName = categoryName,
             };
@@ -94,6 +94,5 @@
             var item = this.itemsService.GetById(id);
             return this.View(item);
         }
-
     }
 }

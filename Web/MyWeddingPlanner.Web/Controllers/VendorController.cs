@@ -1,6 +1,4 @@
-﻿using MyWeddingPlanner.Common;
-
-namespace MyWeddingPlanner.Web.Controllers
+﻿namespace MyWeddingPlanner.Web.Controllers
 {
     using System.Threading.Tasks;
 
@@ -69,7 +67,7 @@ namespace MyWeddingPlanner.Web.Controllers
         }
 
         [Authorize]
-        public IActionResult Category (int serviceId,string service)
+        public IActionResult Category(int serviceId, string service)
         {
             const int itemsPerPage = 12;
             var viewModel = new VendorsListViewModel

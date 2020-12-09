@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MyWeddingPlanner.Web.ViewModels.Marketplace;
-
-namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
+    using System.Collections.Generic;
+
     public class PostsListViewModel : PagingViewModel
     {
         public IEnumerable<PostViewModel> Posts { get; set; }
