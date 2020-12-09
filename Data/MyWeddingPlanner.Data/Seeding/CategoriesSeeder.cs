@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyWeddingPlanner.Common;
 using MyWeddingPlanner.Data.Models;
+using MyWeddingPlanner.Data.Models.Forum;
 using MyWeddingPlanner.Data.Models.Marketplace;
 using MyWeddingPlanner.Data.Models.Vendors;
 
@@ -39,6 +40,16 @@ namespace MyWeddingPlanner.Data.Seeding
                 }
             }
 
+            if (!dbContext.ForumCategories.Any())
+            {
+                var itemCategories = GlobalConstants.allServices
+                    .Split(",", StringSplitOptions.RemoveEmptyEntries).OrderBy(x => x).ToList();
+
+                foreach (var category in itemCategories)
+                {
+                    await dbContext.ForumCategories.AddAsync(new ForumCategory() { Name = category });
+                }
+            }
             await dbContext.SaveChangesAsync();
         }
     }
