@@ -642,8 +642,8 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<int>("Side")
                         .HasColumnType("int");
 
-                    b.Property<string>("Table")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Table")
+                        .HasColumnType("int");
 
                     b.Property<int?>("WeddingId")
                         .HasColumnType("int");
@@ -699,6 +699,9 @@ namespace MyWeddingPlanner.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("BrideName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Budget")
                         .HasColumnType("int");
 
@@ -707,6 +710,9 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("GroomName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -719,7 +725,9 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
+                    b.HasIndex("OwnerId")
+                        .IsUnique()
+                        .HasFilter("[OwnerId] IS NOT NULL");
 
                     b.ToTable("Weddings");
                 });
@@ -1031,8 +1039,8 @@ namespace MyWeddingPlanner.Data.Migrations
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Wedding", b =>
                 {
                     b.HasOne("MyWeddingPlanner.Data.Models.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
+                        .WithOne("Wedding")
+                        .HasForeignKey("MyWeddingPlanner.Data.Models.MyWedding.Wedding", "OwnerId");
 
                     b.Navigation("Owner");
                 });
@@ -1091,6 +1099,8 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Wedding");
                 });
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.Blog.BlogCategory", b =>

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable VirtualMemberCallInConstructor
+
 namespace MyWeddingPlanner.Data.Models
 {
     using System;
@@ -6,6 +7,7 @@ namespace MyWeddingPlanner.Data.Models
 
     using Microsoft.AspNetCore.Identity;
     using MyWeddingPlanner.Data.Common.Models;
+    using MyWeddingPlanner.Data.Models.MyWedding;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
@@ -16,6 +18,8 @@ namespace MyWeddingPlanner.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
         }
+
+        public Wedding Wedding { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }

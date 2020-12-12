@@ -1,5 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using AutoMapper;
@@ -15,7 +16,6 @@
         private readonly IPostsService postsService;
         private readonly IPostCategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IMapper mapper;
 
         public ForumController(
             IPostsService postsService,
@@ -27,16 +27,17 @@
             this.userManager = userManager;
         }
 
-        // public IActionResult ById(int id)
-        // {
-        //    var postViewModel = this.postsService.GetById<PostViewModel>(id);
-        //    if (postViewModel == null)
-        //    {
-        //        return this.NotFound();
-        //    }
+        public IActionResult ById(int id)
+        {
+            var item = this.postsService.GetById(id);
+            if (item == null)
+            {
+                return this.NotFound();
+            }
 
-        // return this.View(postViewModel);
-        // }
+            return this.View(item);
+        }
+
         public IActionResult All(int id = 1)
         {
             const int itemsPerPage = 12;
@@ -61,25 +62,24 @@
         [Authorize]
         public async Task<IActionResult> Create(CreatePostInputModel input)
         {
-            // if (!this.ModelState.IsValid)
-            // {
-            //    return this.View(input);
-            // }
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
-            // try
-            // {
-            await this.postsService.CreateAsync(input, user.Id);
+            try
+            {
+                await this.postsService.CreateAsync(input, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
 
-            // }
-            // catch (Exception ex)
-            // {
-            //    this.ModelState.AddModelError(string.Empty, ex.Message);
-            //    return this.View(input);
-            // }
-
-            // TODO: Redirect to recipe info page
-            return this.Redirect("/");
+            return this.Redirect("/Forum/All");
         }
     }
 }

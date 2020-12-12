@@ -26,7 +26,7 @@
 
         private Task<List<ForumCategory>> GetItemsAsync()
         {
-            return db.ForumCategories.OrderBy(s => s.Name).ToListAsync();
+            return this.db.ForumCategories.OrderBy(s => s.Name).ToListAsync();
         }
     }
 }

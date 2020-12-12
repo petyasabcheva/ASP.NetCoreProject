@@ -5,8 +5,10 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Ganss.XSS;
     using MyWeddingPlanner.Data.Common.Repositories;
     using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Forum;
 
     public class PostsService : IPostsService
@@ -43,13 +45,7 @@
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(x => new PostViewModel()
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Content = x.Content,
-                    Email = x.Author.Email,
-                }).ToList();
+                .To<PostViewModel>().ToList();
             return items;
         }
 
@@ -60,7 +56,11 @@
 
         public PostViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var vendor = this.postsRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<PostViewModel>().FirstOrDefault();
+
+            return vendor;
         }
 
         public IEnumerable<PostViewModel> GetByCategory(int page, int itemsPerPage, int categoryId)

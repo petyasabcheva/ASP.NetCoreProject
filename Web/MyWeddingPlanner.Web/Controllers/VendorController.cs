@@ -1,5 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -40,11 +41,24 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateVendorInputModel input)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
-            await this.vendorService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
 
-            // TODO: Redirect to recipe info page
-            return this.Redirect("/");
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            try
+            {
+                await this.vendorService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
+
+            return this.Redirect("/Vendor/All");
         }
 
         public IActionResult All(int id = 1)

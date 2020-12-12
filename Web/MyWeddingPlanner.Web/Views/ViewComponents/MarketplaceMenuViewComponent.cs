@@ -26,7 +26,7 @@
 
         private Task<List<ItemsCategory>> GetItemsAsync()
         {
-            return db.ItemsCategories.OrderBy(s => s.Name).ToListAsync();
+            return this.db.ItemsCategories.OrderBy(s => s.Name).ToListAsync();
         }
     }
 }

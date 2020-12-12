@@ -8,6 +8,6 @@
 
         public GuestSide Side { get; set; }
 
-        public string Table { get; set; }
+        public int Table { get; set; }
     }
 }

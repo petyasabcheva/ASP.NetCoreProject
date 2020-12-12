@@ -6,15 +6,15 @@
 <h1>@this.ViewData["Title"]</h1>
 <a class="btn btn-secondary" asp-controller="Blog" asp-action="Create">Add a Post</a>
 <hr />
-<div class="row">
+<div class="row col-lg-12" >
     @foreach (var article in this.Model.Articles)
     {
-        <div class="card" style="width: 18rem;">
+        <div class="card  col-lg-6" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">
                     @article.Title
                 </h5>
-                <p class="card-text">@article.Content</p>
+                <p class="card-text">@Html.Raw(article.ShortContent)</p>
                 <a asp-action="ById" asp-route-id="@article.Id" class="btn btn-secondary">Details</a>
             </div>
         </div>
@@ -23,3 +23,6 @@
 <hr />
 
 <partial name="_PagingPartial" model="@Model" />
+
+
+

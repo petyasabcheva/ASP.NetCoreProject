@@ -1,5 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using AutoMapper;
@@ -15,7 +16,6 @@
         private readonly IArticlesService articlesService;
         private readonly IBlogCategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IMapper mapper;
 
         public BlogController(
             IArticlesService articlesService,
@@ -27,16 +27,18 @@
             this.userManager = userManager;
         }
 
-        // public IActionResult ById(int id)
-        // {
-        //    var postViewModel = this.postsService.GetById<PostViewModel>(id);
-        //    if (postViewModel == null)
-        //    {
-        //        return this.NotFound();
-        //    }
+        public IActionResult ById(int id)
+        {
+            var item = this.articlesService.GetById(id);
 
-        // return this.View(postViewModel);
-        // }
+            if (item == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(item);
+        }
+
         public IActionResult All(int id = 1)
         {
             const int itemsPerPage = 12;
@@ -61,25 +63,24 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateArticleInputModel input)
         {
-            // if (!this.ModelState.IsValid)
-            // {
-            //    return this.View(input);
-            // }
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
-            // try
-            // {
-            await this.articlesService.CreateAsync(input, user.Id);
+            try
+            {
+                await this.articlesService.CreateAsync(input, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
 
-            // }
-            // catch (Exception ex)
-            // {
-            //    this.ModelState.AddModelError(string.Empty, ex.Message);
-            //    return this.View(input);
-            // }
-
-            // TODO: Redirect to recipe info page
-            return this.Redirect("/");
+            return this.Redirect("/Blog/All");
         }
     }
 }

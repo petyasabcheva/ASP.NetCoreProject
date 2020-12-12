@@ -1,0 +1,39 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.MyWedding.CreateWeddingInputModel;
+@{
+    this.ViewData["Title"] = "Add your wedding";
+}
+
+<form method="post" class="col-md-6 offset-md-3"
+      enctype="multipart/form-data">
+    <h1>@this.ViewData["Title"]</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="BrideName"></label>
+        <input asp-for="BrideName" class="form-control" />
+        <span asp-validation-for="BrideName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GroomName"></label>
+        <input asp-for="GroomName" class="form-control" />
+        <span asp-validation-for="GroomName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Date"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Budget"></label>
+        <input asp-for="Budget" class="form-control" />
+        <span asp-validation-for="Budget" class="text-danger"></span>
+    </div>
+
+
+
+    <input type="submit" class="btn btn-secondary" />
+</form>

@@ -1,0 +1,79 @@
+﻿
+<div class="modal fade add-guest planner-modal-bx" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="gray-input">
+                <div class="form-group">
+                    <label class="label-title">Guest name*</label>
+                    <input type="text" class="form-control" placeholder="Guest name">
+                </div>
+                <div class="form-group">
+                    <label class="label-title">RSVP status</label>
+                    <div class="btn-group-toggle btn-select" data-toggle="buttons">
+                        <label class="btn active">
+                            <input type="radio" name="options" id="Yes" autocomplete="off" checked=""><i class="fa fa-check"></i> Yes
+                        </label>
+                        <label class="btn">
+                            <input type="radio" name="options" id="No" autocomplete="off"><i class="fa fa-close"></i>  No
+                        </label>
+                        <label class="btn">
+                            <input type="radio" name="options" id="Reply" autocomplete="off"><i class="fa fa-clock-o"></i>  No Reply
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="label-title">Table number / name</label>
+                    <input type="text" class="form-control" placeholder="Add a table number / name">
+                </div>
+                <div class="accordion form-accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <a class="collapsed" href="javascript:;" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Guest's partner / family / plus 1
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="label-title">Link a partner / family / plus 1</label>
+                                    <input type="text" class="form-control" placeholder="Add a guest name">
+                                </div>
+                                <p class="m-b10">Tip: You may add multiple Plus 1’s for each guest.</p>
+                                <p>The linked guests will share contact info (mailing address, etc.), but will maintain their own individual RSVP details.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <a class="collapsed" href="javascript:;" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Notes / dietary requirements
+                            </a>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="e.g. gifts, transport, accommodation, etc."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center m-b30">
+                        <a href="javascript:;" class="btn red">Delete guest</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn green gradient btn-block" href="#">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

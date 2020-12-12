@@ -26,7 +26,7 @@
 
         private Task<List<BlogCategory>> GetItemsAsync()
         {
-            return db.BlogCategories.OrderBy(s => s.Name).ToListAsync();
+            return this.db.BlogCategories.OrderBy(s => s.Name).ToListAsync();
         }
     }
 }

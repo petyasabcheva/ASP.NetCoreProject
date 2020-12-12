@@ -1,5 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -40,25 +41,24 @@
         [Authorize]
         public async Task<IActionResult> Create(CreateItemInputModel input)
         {
-            // if (!this.ModelState.IsValid)
-            // {
-            //    return this.View(input);
-            // }
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
             var user = await this.userManager.GetUserAsync(this.User);
 
-            // try
-            // {
-            await this.itemsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+            try
+            {
+                await this.itemsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                return this.View(input);
+            }
 
-            // }
-            // catch (Exception ex)
-            // {
-            //    this.ModelState.AddModelError(string.Empty, ex.Message);
-            //    return this.View(input);
-            // }
-
-            // TODO: Redirect to recipe info page
-            return this.Redirect("/");
+            return this.Redirect("/Marketplace/All");
         }
 
         public IActionResult All(int id = 1)

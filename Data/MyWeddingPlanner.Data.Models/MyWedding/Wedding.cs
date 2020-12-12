@@ -18,6 +18,10 @@
 
         public string OwnerId { get; set; }
 
+        public string BrideName { get; set; }
+
+        public string GroomName { get; set; }
+
         public DateTime Date { get; set; }
 
         public string Location { get; set; }

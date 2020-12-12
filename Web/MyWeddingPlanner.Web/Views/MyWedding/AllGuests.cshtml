@@ -1,0 +1,95 @@
+﻿@using MyWeddingPlanner.Data.Models.MyWedding
+@model MyWeddingPlanner.Web.ViewModels.MyWedding.GuestListViewModel;
+
+<h2 style="text-align: center">All Guests (@Model.Count)</h2>
+<div class="section-full content-inner bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="planner-box m-b30">
+                    <div class="content-box">
+                        @*Bride*@
+                        <div class="planner-guest-bx">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="title-name">Bride's guests (@Model.BrideGuests.Count())</th>
+                                        <th class="title-addresses">Table</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var guest in @Model.BrideGuests)
+                                    {
+
+                                        <tr class="table-hr"></tr>
+                                        <tr>
+                                            <td >@guest.FullName</td>
+                                            <td >@guest.Table</td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="add-list" colspan="6">
+                                            <form method="post" asp-route-id="1">
+                                                <div class="input-group">
+                                                    <input type="text" name="FullName" class="form-control" placeholder="Add guest's name">
+                                                    <input type="text" name="Table" class="form-control" placeholder="Table ">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-light"><i class="fa fa-plus m-r10"></i>Add Guest</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                @*Groom*@
+                <div class="planner-box m-b30">
+                    <div class="content-box">
+                        <div class="planner-guest-bx">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="title-name">Groom's guests (@Model.GroomGuests.Count())</th>
+                                        <th class="title-addresses">Table</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var guest in @Model.GroomGuests)
+                                    {
+                                        <tr class="table-hr"></tr>
+                                        <tr>
+                                            <td>@guest.FullName</td>
+                                            <td>@guest.Table</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td class="add-list" colspan="6">
+                                            <form method="post" asp-route-id="2">
+                                                <div class="input-group">
+                                                    <input type="text" name="FullName" class="form-control" placeholder="Add guest's name">
+                                                    <input type="text" name="Table" class="form-control" placeholder="Table ">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-light"><i class="fa fa-plus m-r10"></i>Add Guest</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

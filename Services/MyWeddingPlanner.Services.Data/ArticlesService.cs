@@ -7,6 +7,7 @@
 
     using MyWeddingPlanner.Data.Common.Repositories;
     using MyWeddingPlanner.Data.Models.Blog;
+    using MyWeddingPlanner.Services.Mapping;
     using MyWeddingPlanner.Web.ViewModels.Blog;
 
     public class ArticlesService : IArticlesService
@@ -44,13 +45,7 @@
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .Select(x => new ArticleViewModel()
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Content = x.Content,
-                    Email = x.Author.Email,
-                }).ToList();
+                .To<ArticleViewModel>().ToList();
             return items;
         }
 
@@ -61,7 +56,11 @@
 
         public ArticleViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var vendor = this.articleRepository.AllAsNoTracking()
+                .Where(x => x.Id == id)
+                .To<ArticleViewModel>().FirstOrDefault();
+
+            return vendor;
         }
 
         public IEnumerable<ArticleViewModel> GetByCategory(int page, int itemsPerPage, int categoryId)

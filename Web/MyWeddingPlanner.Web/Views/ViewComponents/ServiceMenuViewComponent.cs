@@ -25,7 +25,7 @@
 
         private Task<List<Service>> GetItemsAsync()
         {
-            return db.Services.OrderBy(s => s.Name).ToListAsync();
+            return this.db.Services.OrderBy(s => s.Name).ToListAsync();
         }
     }
 }

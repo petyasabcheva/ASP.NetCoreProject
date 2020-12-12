@@ -1,0 +1,23 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.Blog.ArticleViewModel
+
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>@Model.Title</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1"> </div>
+            <div class="col-lg-10 pt-4 pt-lg-0 content">
+                @*<p class="font-italic">
+                    <strong>Services offered:</strong> @string.Join(", ", @Model.ServicesNames)
+                </p>*@
+            <p>
+                @Html.Raw(Model.SanitizedContent)
+            </p>
+            </div>
+        </div>
+
+    </div>
+</section><!-- End About Section -->

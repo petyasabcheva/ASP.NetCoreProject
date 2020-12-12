@@ -3,6 +3,15 @@
     this.ViewData["Title"] = "Add new article";
     var categoryItems = this.Model.Categories.Select(x => new SelectListItem(x.Value, x.Key));
 }
+<script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: "textarea",
+        plugins: [
+            "image paste table link code media"
+        ]
+    });
+</script>
 
 <form method="post" class="col-md-6 offset-md-3"
       enctype="multipart/form-data">
