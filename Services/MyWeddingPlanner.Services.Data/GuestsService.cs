@@ -42,7 +42,7 @@
         {
             var wedding = this.weddingRepository.All().FirstOrDefault(x => x.OwnerId == userId);
             var guests = this.guestRepository.AllAsNoTracking()
-                .Where(x => x.Side == (GuestSide)side && wedding.OwnerId == userId)
+                .Where(x => x.Side == (GuestSide)side && wedding.OwnerId == userId).OrderBy(x => x.Table)
                 .Select(x => new GuestViewModel()
                 {
                     FullName = x.FullName,

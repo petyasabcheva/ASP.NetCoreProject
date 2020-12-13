@@ -13,5 +13,9 @@
         public decimal PaidAmount { get; set; }
 
         public DateTime DueDate { get; set; }
+
+        public Wedding Wedding { get; set; }
+
+        public int WeddingId { get; set; }
     }
 }

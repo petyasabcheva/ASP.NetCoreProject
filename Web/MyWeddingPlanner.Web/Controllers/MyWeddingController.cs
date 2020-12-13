@@ -1,8 +1,6 @@
 ﻿namespace MyWeddingPlanner.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Authorization;
@@ -11,19 +9,22 @@
     using MyWeddingPlanner.Data.Models;
     using MyWeddingPlanner.Services.Data;
     using MyWeddingPlanner.Web.ViewModels.MyWedding;
-    using MyWeddingPlanner.Web.ViewModels.Vendors;
 
     public class MyWeddingController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWeddingService weddingService;
         private readonly IGuestsService guestsService;
+        private readonly IExpensesService expensesService;
+        private readonly ITasksService tasksService;
 
-        public MyWeddingController(UserManager<ApplicationUser> userManager, IWeddingService weddingService, IGuestsService guestsService)
+        public MyWeddingController(UserManager<ApplicationUser> userManager, IWeddingService weddingService, IGuestsService guestsService, IExpensesService expensesService, ITasksService tasksService)
         {
             this.userManager = userManager;
             this.weddingService = weddingService;
             this.guestsService = guestsService;
+            this.tasksService = tasksService;
+            this.expensesService = expensesService;
         }
 
         public async Task<IActionResult> IndexAsync()
@@ -108,14 +109,68 @@
             return this.Redirect("/MyWedding/AllGuests");
         }
 
-        public IActionResult AllTasks()
+        public async Task<IActionResult> AllTasks()
         {
-            return this.View();
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var viewModel = new TaskListViewModel
+            {
+                CompletedTasks = this.tasksService.GetAll(user.Id, true),
+                NonCompletedTasks = this.tasksService.GetAll(user.Id, false),
+            };
+            return this.View(viewModel);
         }
 
-        public IActionResult Budget()
+        [HttpPost]
+        public async Task<IActionResult> AllTasks(string name)
         {
-            return this.View();
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            try
+            {
+                await this.tasksService.CreateAsync(name, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return this.Redirect("/MyWedding/AllTasks");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CompleteTask(int id)
+        {
+            await this.tasksService.CompleteTask(id);
+            return this.Redirect("/MyWedding/AllTasks");
+        }
+
+        public async Task<IActionResult> Budget()
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            var viewModel = new BudgetViewModel()
+            {
+                Expenditures = this.expensesService.GetAll(user.Id),
+                Budget = this.weddingService.GetWedding(user.Id).Budget,
+            };
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Budget(string name, decimal totalAmount, decimal paidAmount, DateTime dueDate)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            try
+            {
+                await this.expensesService.CreateAsync(name, totalAmount, paidAmount, dueDate, user.Id);
+            }
+            catch (Exception ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return this.Redirect("/MyWedding/Budget");
         }
     }
 }

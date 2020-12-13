@@ -1,8 +1,7 @@
 ﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using System.Text.RegularExpressions;
 
     using Ganss.XSS;
     using MyWeddingPlanner.Data.Models.Forum;
@@ -29,7 +28,7 @@
         {
             get
             {
-                var content = this.SanitizedContent;
+                var content = Regex.Replace(this.SanitizedContent, "\\<[^\\>]*\\>", string.Empty);
                 return content.Length > 300
                     ? content.Substring(0, 300) + "..."
                     : content;

@@ -4,7 +4,7 @@
 
     public static class GlobalConstants
     {
-        public const string SystemName = "MyWeddingPlanner";
+        public const string SystemName = "My Wedding Planner";
 
         public const string AdministratorRoleName = "Administrator";
 

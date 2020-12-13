@@ -40,6 +40,8 @@
                     Date = x.Date,
                     BrideName = x.BrideName,
                     GroomName = x.GroomName,
+                    Guests = x.Guests.Count,
+                    Tasks = x.ToDos.Where(x => x.Completed == false).Count(),
                 }).FirstOrDefault();
             return wedding;
         }

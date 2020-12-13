@@ -12,9 +12,9 @@
     <div class="card" style="width: 18rem;">
         <img src=@vendor.ImageUrl class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title"><a asp-action="ById" asp-route-id="@vendor.Id"></a>
+            <h6 class="card-title"><a asp-action="ById" asp-route-id="@vendor.Id"></a>
                 @vendor.Name
-            </h5>
+            </h6>
             <p class="card-text">@string.Join(", ",vendor.ServicesNames)</p>
             <a asp-action="ById" asp-route-id="@vendor.Id" class="btn btn-secondary">Details</a>
         </div>

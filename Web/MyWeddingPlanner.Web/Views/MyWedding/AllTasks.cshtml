@@ -1,0 +1,67 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.MyWedding.TaskListViewModel;
+
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            border: 2px solid #add8e6 ;
+            text-align: left;
+            padding: 8px;
+        }
+/*
+        tr:nth-child(even) {
+            background-color: #dddddd;*/
+     /*   }*/
+    </style>
+</head>
+<body>
+
+    <h2>All tasks</h2>
+    <h3>Not completed</h3>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Done</th>
+        </tr>
+        @foreach (var task in @Model.NonCompletedTasks)
+        {
+            <form asp-controller="MyWedding" asp-action="CompleteTask" asp-route-id="@task.Id" method="post">
+                <tr style="background-color: #b0e0e6;">
+                    <td>@task.Name</td>
+                    <td> <input type="checkbox" id="done" onChange="this.form.submit()" name="done" value="true"></td>
+                </tr>
+            </form>
+        }
+    </table>
+
+    <form asp-controller="MyWedding" asp-action="AllTasks" method="post">
+        <div class="input-group">
+            <td><input type="text" name="Name" required class="form-control" placeholder="Task name"></td>
+            <div class="input-group-append">
+                <td><button class="btn btn-light"><i class="fa fa-plus m-r10"></i>Add Task</button></td>
+            </div>
+        </div>
+    </form>
+
+    <h3>Completed</h3>
+    <table>
+        <tr>
+            <th>Task</th>
+        </tr>
+        @foreach (var task in @Model.CompletedTasks)
+        {
+            <tr>
+                <td>@task.Name</td>
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

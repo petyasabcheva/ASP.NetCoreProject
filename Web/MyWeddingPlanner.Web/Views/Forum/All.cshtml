@@ -11,9 +11,9 @@
     <div class="row col-lg-12">
         <div class="card col-lg-12" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">
+                <h4 class="card-title" style="font-weight:bold;">
                     @post.Title
-                </h5>
+                </h4>
                 <p class="card-text">@post.Email</p>
                 <p class="card-text">@Html.Raw(post.ShortContent)</p>
                 <a asp-action="ById" asp-route-id="@post.Id" class="btn btn-secondary">Details</a>

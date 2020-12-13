@@ -1,0 +1,63 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.MyWedding.BudgetViewModel;
+
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Wedding Budget</h2>
+    <p>Edit Delete</p>
+
+<table>
+    <tr>
+        <th>Expense</th>
+        <th>Total price</th>
+        <th>Paid</th>
+        <th>Left to pay</th>
+        <th>Due date</th>
+    </tr>
+    @foreach (var expense in @Model.Expenditures)
+    {
+        <tr>
+            <td>@expense.Name</td>
+            <td>@expense.TotalAmount</td>
+            <td>@expense.PaidAmount</td>
+            <td>@expense.LeftAmount</td>
+            <td>@expense.DueDate.ToShortDateString()</td>
+        </tr>
+    }
+<tr>
+    <form method="post">
+        <div class="input-group">
+            <td><input type="text" name="Name" required class="form-control" placeholder="Expenditure name"></td>
+            <td> <input type="number" step=".01" name="TotalAmount" required class="form-control" placeholder="Total amount "></td>
+            <td><input type="number" step=".01" name="PaidAmount" required class="form-control" placeholder="Paid amount "></td>
+            <td><input type="date" name="DueDate" required class="form-control" placeholder="Due date"></td>
+            <div class="input-group-append">
+               <td><button class="btn btn-light"><i class="fa fa-plus m-r10"></i>Add Expenditure</button></td>
+            </div>
+        </div>
+    </form>
+</tr>
+</table>
+
+
+</body>
+</html>

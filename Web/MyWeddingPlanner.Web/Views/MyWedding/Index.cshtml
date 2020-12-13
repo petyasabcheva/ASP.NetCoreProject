@@ -15,10 +15,9 @@
             <h3><strong>Location: </strong>@Model.Location</h3>
         </div>
         <div style="text-align:center">
-            <h3><a asp-controller="MyWedding" asp-action="AllGuests"><strong>Guests: </strong>100</a></h3>
-            <h3><a asp-controller="MyWedding" asp-action="AllGuests"><strong>Tasks to complete: </strong>100</a></h3>
-            <h3><a asp-controller="MyWedding" asp-action="AllGuests"><strong>Money spent: </strong>100</a></h3>
-            <h3><a asp-controller="MyWedding" asp-action="AllGuests"><strong>Money left: </strong>100</a></h3>
+            <h3><a asp-controller="MyWedding" asp-action="AllGuests"><strong>Guests: </strong>@Model.Guests</a></h3>
+            <h3><a asp-controller="MyWedding" asp-action="AllTasks"><strong>Tasks to complete: </strong>@Model.Tasks</a></h3>
+            <h3><a asp-controller="MyWedding" asp-action="Budget"><strong>Budget: </strong>@Model.Budget</a></h3>
         </div>
     </div>
 </section><!-- End About Section -->

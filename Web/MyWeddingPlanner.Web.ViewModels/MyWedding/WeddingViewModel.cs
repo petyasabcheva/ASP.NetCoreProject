@@ -20,10 +20,8 @@
 
         public string GroomName { get; set; }
 
-        // public virtual ICollection<Expenditure> Expenditures { get; set; }
+        public int Guests { get; set; }
 
-        // public virtual ICollection<ToDo> ToDos { get; set; }
-
-        // public virtual ICollection<Guest> Guests { get; set; }
+        public int Tasks { get; set; }
     }
 }
