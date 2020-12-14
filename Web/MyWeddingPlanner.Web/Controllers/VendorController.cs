@@ -68,7 +68,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Vendors = this.vendorService.GetAll(id, 12),
+                Vendors = this.vendorService.GetAll(id, itemsPerPage),
                 ItemsCount = this.vendorService.GetCount(),
             };
             return this.View(viewModel);

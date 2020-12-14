@@ -74,7 +74,6 @@
             return this.View(viewModel);
         }
 
-        [Authorize]
         public IActionResult Category(int categoryId, string categoryName)
         {
             const int itemsPerPage = 12;

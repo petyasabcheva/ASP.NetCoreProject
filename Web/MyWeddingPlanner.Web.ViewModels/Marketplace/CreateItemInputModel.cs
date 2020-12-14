@@ -21,6 +21,9 @@
         [MinLength(50)]
         public string Description { get; set; }
 
+        [Required]
+        public decimal Price { get; set; }
+
         public string UserId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> Categories { get; set; }

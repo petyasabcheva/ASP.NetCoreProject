@@ -407,10 +407,10 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PostId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("PostId1")
+                    b.Property<int>("PostId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -419,7 +419,9 @@ namespace MyWeddingPlanner.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("PostId1");
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("PostId");
 
                     b.ToTable("ForumComments");
                 });
@@ -611,7 +613,7 @@ namespace MyWeddingPlanner.Data.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("WeddingId")
+                    b.Property<int>("WeddingId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -767,6 +769,9 @@ namespace MyWeddingPlanner.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -955,11 +960,19 @@ namespace MyWeddingPlanner.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AuthorId");
 
+                    b.HasOne("MyWeddingPlanner.Data.Models.Forum.ForumComment", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId");
+
                     b.HasOne("MyWeddingPlanner.Data.Models.Forum.ForumPost", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId1");
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Author");
+
+                    b.Navigation("Parent");
 
                     b.Navigation("Post");
                 });
@@ -1017,9 +1030,13 @@ namespace MyWeddingPlanner.Data.Migrations
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Expenditure", b =>
                 {
-                    b.HasOne("MyWeddingPlanner.Data.Models.MyWedding.Wedding", null)
+                    b.HasOne("MyWeddingPlanner.Data.Models.MyWedding.Wedding", "Wedding")
                         .WithMany("Expenditures")
-                        .HasForeignKey("WeddingId");
+                        .HasForeignKey("WeddingId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Wedding");
                 });
 
             modelBuilder.Entity("MyWeddingPlanner.Data.Models.MyWedding.Guest", b =>

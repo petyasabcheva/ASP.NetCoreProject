@@ -1,5 +1,7 @@
 ﻿@model MyWeddingPlanner.Web.ViewModels.MyWedding.BudgetViewModel;
 
+
+
 <html>
 <head>
     <style>
@@ -18,12 +20,37 @@
         tr:nth-child(even) {
             background-color: #dddddd;
         }
+
+        #rcorners4 {
+            border-radius: 15px;
+            padding: 10px;
+            width: 90px;
+            height: 70px;
+            text-align: center;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Wedding Budget</h2>
-    <p>Edit Delete</p>
+<h1 class="text-center">Wedding Budget</h1>
+<div class="row">
+    <p class="col-md-2"></p>
+    <h4 class="col-md-2" style="background: #faebd7;" id="rcorners4">
+        <strong >Budget</strong>
+        <p> @Model.Budget</p>
+    </h4>
+    <p class="col-md-1"></p>
+    <h4 class="col-md-2" style="background: #f5f5dc;" id="rcorners4">
+        <strong>Paid</strong>
+        <p> @Model.TotalPaid</p>
+    </h4>
+    <p class="col-md-1"></p>
+    <h4 class="col-md-2" style="background: #faf0e6;" id="rcorners4">
+        <strong>To pay</strong>
+        <p> @Model.TotalLeft</p>
+    </h4>
+</div>
 
 <table>
     <tr>

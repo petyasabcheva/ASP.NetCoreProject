@@ -6,11 +6,15 @@
     {
         public string Content { get; set; }
 
+        public int? ParentId { get; set; }
+
+        public virtual ForumComment Parent { get; set; }
+
         public string AuthorId { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
 
-        public string PostId { get; set; }
+        public int PostId { get; set; }
 
         public virtual ForumPost Post { get; set; }
     }

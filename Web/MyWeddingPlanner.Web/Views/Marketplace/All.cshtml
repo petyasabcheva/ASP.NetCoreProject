@@ -9,8 +9,8 @@
 <div class="row">
     @foreach (var item in this.Model.Items)
     {
-        <div class="card" style="width: 18rem;">
-            <img src=@item.ImageUrl class="card-img-top" alt="...">
+        <div class="card col-lg-4">
+            <img src=@item.ImageUrl class="card-img-top crop" alt="...">
             <div class="card-body">
                 <h5 class="card-title">
                     @item.Name

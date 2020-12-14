@@ -34,6 +34,7 @@
                 Description = input.Description,
                 Email = input.Email,
                 PhoneNumber = input.PhoneNumber,
+                Address = input.PhoneNumber,
                 WebPage = input.WebPage,
                 UserId = userId,
             };
@@ -119,6 +120,7 @@
                     Id = x.Id,
                     ImageUrls = x.Images.Select(x => $"/images/vendors/{x.Id}.{x.Extension}").ToArray(),
                     PhoneNumber = x.PhoneNumber,
+                    Address = x.Address,
                     ServicesNames = x.VendorServices.Select(x => x.Service.Name).ToArray(),
                     User = x.User.Email,
                     WebPage = x.WebPage,

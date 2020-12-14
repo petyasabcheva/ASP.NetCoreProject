@@ -79,6 +79,7 @@
             services.AddTransient<IGuestsService, GuestsService>();
             services.AddTransient<IExpensesService, ExpensesService>();
             services.AddTransient<ITasksService, TasksService>();
+            services.AddTransient<ICommentsService, CommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

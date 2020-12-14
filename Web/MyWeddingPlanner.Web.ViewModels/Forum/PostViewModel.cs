@@ -1,4 +1,7 @@
-﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿using System.Collections.Generic;
+using AutoMapper;
+
+namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
     using System;
     using System.Text.RegularExpressions;
@@ -19,11 +22,12 @@
 
         public string SanitizedContent => new HtmlSanitizer().Sanitize(this.Content);
 
-        public string Email { get; set; }
+        public string AuthorEmail { get; set; }
 
         public int VotesCount { get; set; }
 
-        // public IEnumerable<PostCommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentViewModel> Comments { get; set; }
+
         public string ShortContent
         {
             get

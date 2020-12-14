@@ -23,6 +23,8 @@
         [Required]
         public string Email { get; set; }
 
+        public string Address { get; set; }
+
         [Display(Name = "Web page")]
         public string WebPage { get; set; }
 
