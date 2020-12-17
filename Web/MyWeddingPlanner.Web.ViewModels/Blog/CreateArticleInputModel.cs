@@ -13,7 +13,6 @@
         public string Title { get; set; }
 
         [Required]
-        [MinLength(50)]
         public string Content { get; set; }
 
         public string AuthorId { get; set; }

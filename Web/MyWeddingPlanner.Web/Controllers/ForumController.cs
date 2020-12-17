@@ -1,6 +1,4 @@
-﻿
-
-namespace MyWeddingPlanner.Web.Controllers
+﻿namespace MyWeddingPlanner.Web.Controllers
 {
     using System;
     using System.Threading.Tasks;
@@ -57,8 +55,10 @@ namespace MyWeddingPlanner.Web.Controllers
 
         public IActionResult Create()
         {
-            var viewModel = new CreatePostInputModel();
-            viewModel.Categories = this.categoriesService.GetAllAsKeyValuePairs();
+            var viewModel = new CreatePostInputModel
+            {
+                Categories = this.categoriesService.GetAllAsKeyValuePairs(),
+            };
             return this.View(viewModel);
         }
 
@@ -86,16 +86,16 @@ namespace MyWeddingPlanner.Web.Controllers
             return this.Redirect("/Forum/All");
         }
 
-        public IActionResult Category(int id, string categoryName)
+        public IActionResult Category(int categoryId, string categoryName, int id = 1)
         {
             const int itemsPerPage = 12;
             var viewModel = new PostsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Posts = this.postsService.GetByCategory<PostViewModel>(1, 12, id),
+                Posts = this.postsService.GetByCategory<PostViewModel>(id, 12, categoryId),
                 ItemsCount = this.postsService.GetCount(),
-                CategoryName=categoryName,
+                CategoryName = categoryName,
             };
             return this.View(viewModel);
         }

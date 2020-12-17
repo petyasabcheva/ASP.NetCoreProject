@@ -31,7 +31,7 @@
             {
                 Name = input.Name,
                 Description = input.Description,
-                Price=input.Price,
+                Price = input.Price,
                 UserId = userId,
             };
 

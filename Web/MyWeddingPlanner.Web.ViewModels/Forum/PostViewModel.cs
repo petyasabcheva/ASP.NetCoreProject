@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
-
-namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
     using System;
+    using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
+    using AutoMapper;
     using Ganss.XSS;
     using MyWeddingPlanner.Data.Models.Forum;
     using MyWeddingPlanner.Services.Mapping;

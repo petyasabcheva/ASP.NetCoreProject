@@ -65,7 +65,13 @@
 
         public IEnumerable<T> GetByCategory<T>(int page, int itemsPerPage, int categoryId)
         {
-            throw new NotImplementedException();
+            var items = this.articleRepository
+                .AllAsNoTracking().Where(x => x.CategoryId == categoryId)
+                .OrderByDescending(x => x.Id)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>().ToList();
+            return items;
         }
     }
 }

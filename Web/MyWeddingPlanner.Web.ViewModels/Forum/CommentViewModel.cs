@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Ganss.XSS;
-using MyWeddingPlanner.Data.Models.Forum;
-using MyWeddingPlanner.Services.Mapping;
-
-namespace MyWeddingPlanner.Web.ViewModels.Forum
+﻿namespace MyWeddingPlanner.Web.ViewModels.Forum
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using Ganss.XSS;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Services.Mapping;
+
     public class CommentViewModel : IMapFrom<ForumComment>
     {
         public int Id { get; set; }

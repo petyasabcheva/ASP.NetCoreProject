@@ -1,11 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using MyWeddingPlanner.Data.Common.Repositories;
-using MyWeddingPlanner.Data.Models.Forum;
-using MyWeddingPlanner.Services.Data;
-
-namespace MyWeddingPlanner.Services.Data
+﻿namespace MyWeddingPlanner.Services.Data
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using MyWeddingPlanner.Data.Common.Repositories;
+    using MyWeddingPlanner.Data.Models.Forum;
+    using MyWeddingPlanner.Services.Data;
+
     public class CommentsService : ICommentsService
     {
         private readonly IDeletableEntityRepository<ForumComment> commentsRepository;

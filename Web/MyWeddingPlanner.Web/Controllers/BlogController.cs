@@ -81,5 +81,19 @@
 
             return this.Redirect("/Blog/All");
         }
+
+        public IActionResult Category(int categoryId, string categoryName, int id = 1)
+        {
+            const int itemsPerPage = 12;
+            var viewModel = new ArticleListViewModel()
+            {
+                ItemsPerPage = itemsPerPage,
+                PageNumber = id,
+                Articles = this.articlesService.GetByCategory<ArticleViewModel>(1, 12, categoryId),
+                ItemsCount = this.articlesService.GetCount(),
+                CategoryName = categoryName,
+            };
+            return this.View(viewModel);
+        }
     }
 }
