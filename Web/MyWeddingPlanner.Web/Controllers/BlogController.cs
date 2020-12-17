@@ -28,7 +28,7 @@
 
         public IActionResult ById(int id)
         {
-            var item = this.articlesService.GetById(id);
+            var item = this.articlesService.GetById<ArticleViewModel>(id);
 
             if (item == null)
             {
@@ -45,7 +45,7 @@
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Articles = this.articlesService.GetAll(id, 12),
+                Articles = this.articlesService.GetAll<ArticleViewModel>(id, 12),
                 ItemsCount = this.articlesService.GetCount(),
             };
             return this.View(viewModel);

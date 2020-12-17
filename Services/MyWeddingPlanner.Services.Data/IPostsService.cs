@@ -12,12 +12,12 @@
     {
         Task CreateAsync(CreatePostInputModel input, string userId);
 
-        IEnumerable<PostViewModel> GetAll(int page, int itemsPerPage);
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 
         int GetCount();
 
-        PostViewModel GetById(int id);
+        T GetById<T>(int id);
 
-        IEnumerable<PostViewModel> GetByCategory(int page, int itemsPerPage, int categoryId);
+        IEnumerable<T> GetByCategory<T>(int page, int itemsPerPage, int categoryId);
     }
 }

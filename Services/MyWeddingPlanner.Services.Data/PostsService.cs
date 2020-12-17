@@ -38,14 +38,14 @@
             await this.postsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<PostViewModel> GetAll(int page, int itemsPerPage)
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage)
         {
             var items = this.postsRepository
                 .AllAsNoTracking()
                 .OrderByDescending(x => x.Id)
                 .Skip((page - 1) * itemsPerPage)
                 .Take(itemsPerPage)
-                .To<PostViewModel>().ToList();
+                .To<T>().ToList();
             return items;
         }
 
@@ -54,16 +54,16 @@
             return this.postsRepository.All().Count();
         }
 
-        public PostViewModel GetById(int id)
+        public T GetById<T>(int id)
         {
             var vendor = this.postsRepository.AllAsNoTracking()
                 .Where(x => x.Id == id)
-                .To<PostViewModel>().FirstOrDefault();
+                .To<T>().FirstOrDefault();
 
             return vendor;
         }
 
-        public IEnumerable<PostViewModel> GetByCategory(int page, int itemsPerPage, int categoryId)
+        public IEnumerable<T> GetByCategory<T>(int page, int itemsPerPage, int categoryId)
         {
             throw new NotImplementedException();
         }

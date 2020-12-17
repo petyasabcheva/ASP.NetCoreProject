@@ -11,12 +11,12 @@
     {
         Task CreateAsync(CreateArticleInputModel input, string userId);
 
-        IEnumerable<ArticleViewModel> GetAll(int page, int itemsPerPage);
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage);
 
         int GetCount();
 
-        ArticleViewModel GetById(int id);
+        T GetById<T>(int id);
 
-        IEnumerable<ArticleViewModel> GetByCategory(int page, int itemsPerPage, int categoryId);
+        IEnumerable<T> GetByCategory<T>(int page, int itemsPerPage, int categoryId);
     }
 }

@@ -44,6 +44,7 @@
                     {
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
+
                     });
             services.AddAuthentication().AddFacebook(options =>
             {

@@ -33,7 +33,7 @@ namespace MyWeddingPlanner.Web.Controllers
 
         public IActionResult ById(int id)
         {
-            var item = this.postsService.GetById(id);
+            var item = this.postsService.GetById<PostViewModel>(id);
             if (item == null)
             {
                 return this.NotFound();
@@ -49,7 +49,7 @@ namespace MyWeddingPlanner.Web.Controllers
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Posts = this.postsService.GetAll(id, 12),
+                Posts = this.postsService.GetAll<PostViewModel>(id, 12),
                 ItemsCount = this.postsService.GetCount(),
             };
             return this.View(viewModel);
@@ -93,7 +93,7 @@ namespace MyWeddingPlanner.Web.Controllers
             {
                 ItemsPerPage = itemsPerPage,
                 PageNumber = id,
-                Posts = this.postsService.GetByCategory(1, 12, id),
+                Posts = this.postsService.GetByCategory<PostViewModel>(1, 12, id),
                 ItemsCount = this.postsService.GetCount(),
                 CategoryName=categoryName,
             };
