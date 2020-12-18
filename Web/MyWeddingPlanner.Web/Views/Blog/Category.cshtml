@@ -1,0 +1,27 @@
+﻿@model MyWeddingPlanner.Web.ViewModels.Blog.ArticleListViewModel;
+@{
+    this.ViewData["Title"] = @Model.CategoryName;
+}
+
+<h1>@this.ViewData["Title"]</h1>
+<hr />
+<div class="row col-lg-12" >
+    @foreach (var article in this.Model.Articles)
+    {
+        <div class="card  col-lg-6" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title" style="font-weight:bold;">
+                    @article.Title
+                </h4>
+                <p class="card-text">@Html.Raw(article.ShortContent)</p>
+                <a asp-action="ById" asp-route-id="@article.Id" class="btn btn-secondary">Details</a>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+
+<partial name="_PagingPartial" model="@Model" />
+
+
+
