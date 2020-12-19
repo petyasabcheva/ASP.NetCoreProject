@@ -8,6 +8,8 @@
 
         public const string AdministratorRoleName = "Administrator";
 
+        public const string CloudName = "daomdubzx";
+
         public const string AllServices =
             "Florist,Dresses,Jewelry,Bakery,Makeup,Hair,Menswear,Vehicles,DJ,Performers,Decoration,Organisation,Venues,Invitations,Accessories,Photography,Videography,Catering,Fireworks,Alcohol,Animatios,Items for rent";
 

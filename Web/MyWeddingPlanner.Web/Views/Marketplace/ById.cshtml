@@ -1,4 +1,5 @@
-﻿@model MyWeddingPlanner.Web.ViewModels.Marketplace.SingleItemViewModel
+﻿@using MyWeddingPlanner.Common
+@model MyWeddingPlanner.Web.ViewModels.Marketplace.SingleItemViewModel
     <div class="row">
         <div class="row col-lg-8">
             <div class="col-lg-12 pt-4 pt-lg-0 content" style="position:relative; top:165px;">
@@ -43,6 +44,10 @@
                         <p class="font-italic">
                             @Model.CategoryName
                         </p>
+                        @if (User.Identity.Name == @Model.SellerEmail|| this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <a class="btn btn-secondary" asp-controller="Marketplace" asp-action="Delete" asp-route-id="@Model.Id">Delete this item</a>
+                        }
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul>

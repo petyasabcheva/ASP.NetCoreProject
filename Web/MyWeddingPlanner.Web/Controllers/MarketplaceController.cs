@@ -32,8 +32,10 @@
 
         public IActionResult Create()
         {
-            var viewModel = new CreateItemInputModel();
-            viewModel.Categories = this.categoriesService.GetAllAsKeyValuePairs();
+            var viewModel = new CreateItemInputModel
+            {
+                Categories = this.categoriesService.GetAllAsKeyValuePairs(),
+            };
             return this.View(viewModel);
         }
 
@@ -92,6 +94,13 @@
         {
             var item = this.itemsService.GetById(id);
             return this.View(item);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.itemsService.DeleteAsync(id, user.Id);
+            return this.Redirect("/Marketplace/All");
         }
     }
 }

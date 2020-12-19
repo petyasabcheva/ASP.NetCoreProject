@@ -15,11 +15,11 @@
 
     public class ItemsService : IItemsService
     {
-        private readonly IRepository<ItemForSale> itemsRepository;
+        private readonly IDeletableEntityRepository<ItemForSale> itemsRepository;
         private readonly IDeletableEntityRepository<ItemsCategory> categoryRepository;
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif", "JPG" };
 
-        public ItemsService(IRepository<ItemForSale> itemsRepository, IDeletableEntityRepository<ItemsCategory> categoryRepository)
+        public ItemsService(IDeletableEntityRepository<ItemForSale> itemsRepository, IDeletableEntityRepository<ItemsCategory> categoryRepository)
         {
             this.itemsRepository = itemsRepository;
             this.categoryRepository = categoryRepository;
@@ -124,6 +124,17 @@
                         "/images/itemsForSale/" + x.Images.FirstOrDefault().Id + '.' + x.Images.FirstOrDefault().Extension,
                 }).ToList();
             return items;
+        }
+
+        public async Task DeleteAsync(int id, string userId)
+        {
+            var item = this.itemsRepository.All().FirstOrDefault(x => x.Id == id);
+            if (userId == item.UserId)
+            {
+                item.IsDeleted = true;
+                this.itemsRepository.Update(item);
+                await this.itemsRepository.SaveChangesAsync();
+            }
         }
     }
 }

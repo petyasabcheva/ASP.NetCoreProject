@@ -16,5 +16,7 @@
         SingleVendorViewModel GetById(int id);
 
         IEnumerable<VendorInListViewModel> GetByCategory(int page, int itemsPerPage, int serviceId);
+
+        Task DeleteAsync(int id, string userId);
     }
 }

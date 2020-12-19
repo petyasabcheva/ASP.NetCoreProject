@@ -15,11 +15,11 @@
     public class VendorsService : IVendorsService
     {
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif", "JPG" };
-        private readonly IRepository<Vendor> vendorRepository;
+        private readonly IDeletableEntityRepository<Vendor> vendorRepository;
         private readonly IDeletableEntityRepository<Service> serviceRepository;
 
         public VendorsService(
-            IRepository<Vendor> vendorRepository,
+            IDeletableEntityRepository<Vendor> vendorRepository,
             IDeletableEntityRepository<Service> serviceRepository)
         {
             this.vendorRepository = vendorRepository;
@@ -72,8 +72,11 @@
                     Extension = extension,
                     UserId = userId,
                 };
-                vendor.Images.Add(dbImage);
 
+                // var remoteUrl = await this.cloudinaryService
+                //    .UploadAsync(image, dbImage.Id);
+                // dbImage.RemoteImageUrl = remoteUrl;
+                vendor.Images.Add(dbImage);
                 var physicalPath = $"{imagePath}/vendors/{dbImage.Id}.{extension}";
                 using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
                 await image.CopyToAsync(fileStream);
@@ -147,6 +150,17 @@
                         "/images/vendors/" + x.Images.FirstOrDefault().Id + '.' + x.Images.FirstOrDefault().Extension,
                 }).ToList();
             return vendors;
+        }
+
+        public async Task DeleteAsync(int id, string userId)
+        {
+            var vendor = this.vendorRepository.All().FirstOrDefault(x => x.Id == id);
+            if (userId == vendor.UserId)
+            {
+                vendor.IsDeleted = true;
+                this.vendorRepository.Update(vendor);
+                await this.vendorRepository.SaveChangesAsync();
+            }
         }
     }
 }

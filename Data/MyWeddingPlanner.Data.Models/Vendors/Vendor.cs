@@ -4,7 +4,7 @@
 
     using MyWeddingPlanner.Data.Common.Models;
 
-    public class Vendor : BaseModel<int>
+    public class Vendor : BaseDeletableModel<int>
     {
         public Vendor()
         {

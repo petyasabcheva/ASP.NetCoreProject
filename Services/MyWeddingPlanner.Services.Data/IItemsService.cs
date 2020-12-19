@@ -16,5 +16,7 @@
         SingleItemViewModel GetById(int id);
 
         IEnumerable<ItemsInListViewModel> GetByCategory(int page, int itemsPerPage, int categoryId);
+
+        Task DeleteAsync(int id, string userId);
     }
 }

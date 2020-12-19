@@ -2,6 +2,7 @@
 {
     using System.Reflection;
 
+    using CloudinaryDotNet;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using MyWeddingPlanner.Common;
     using MyWeddingPlanner.Data;
     using MyWeddingPlanner.Data.Common;
     using MyWeddingPlanner.Data.Common.Repositories;
@@ -50,6 +52,14 @@
                 options.AppId = "188687282898480";
                 options.AppSecret = "5a52178448b3d20abd0169923e053365";
             });
+
+            // Cloudinary Setup
+            Cloudinary cloudinary = new Cloudinary(new Account(
+                GlobalConstants.CloudName,
+                "326516555618834",
+                "A0TJHbdWGrwqnTGaxrAvyd1ieNw"));
+            services.AddSingleton(cloudinary);
+
             services.AddControllersWithViews(
                 options =>
                     {
@@ -80,6 +90,7 @@
             services.AddTransient<IExpensesService, ExpensesService>();
             services.AddTransient<ITasksService, TasksService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

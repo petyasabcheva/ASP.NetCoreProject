@@ -32,8 +32,10 @@
 
         public IActionResult Create()
         {
-            var viewModel = new CreateVendorInputModel();
-            viewModel.Services = this.servicesService.GetAllAsKeyValuePairs();
+            var viewModel = new CreateVendorInputModel
+            {
+                Services = this.servicesService.GetAllAsKeyValuePairs(),
+            };
             return this.View(viewModel);
         }
 
@@ -63,7 +65,7 @@
 
         public IActionResult All(int id = 1)
         {
-            const int itemsPerPage = 12;
+            const int itemsPerPage = 6;
             var viewModel = new VendorsListViewModel
             {
                 ItemsPerPage = itemsPerPage,
@@ -93,6 +95,13 @@
                 CategoryName = service,
             };
             return this.View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            await this.vendorService.DeleteAsync(id, user.Id);
+            return this.Redirect("/Vendor/All");
         }
     }
 }

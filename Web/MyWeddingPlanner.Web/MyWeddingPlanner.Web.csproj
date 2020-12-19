@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="chosen" Version="1.2.0" />
+    <PackageReference Include="CloudinaryDotNet" Version="1.14.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
