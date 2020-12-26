@@ -1,12 +1,13 @@
 # My Wedding Planner
 
  
-A wedding planning web application that brings brides and vendors together. ?? ??
-?? My project for the ASP.NET Core course at SoftUni.
+A wedding planning web application that brings brides and vendors together.
+My project for the ASP.NET Core course at SoftUni.
 
 Available at: https://moyatasvatba.azurewebsites.net/
+![](images/IndexPage.JPG)
 
-?? Built With
+Built With:
 * ASP.NET 5
 * Entity Framework (EF)
 * ASP.NET Identity System
@@ -14,7 +15,7 @@ Available at: https://moyatasvatba.azurewebsites.net/
 * Razor Pages, Sections, Partial Views
 * View Components
 * Repository Pattern
-* Auto ?apping
+* Auto Mapping
 * Dependency Injection
 * Exception Handling Middleware
 * Sorting, Filtering, and Paging with EF Core
@@ -24,4 +25,4 @@ Available at: https://moyatasvatba.azurewebsites.net/
 * jQuery
 
 #Database Diagram
-
+![](images/dbDiagram.JPG)
